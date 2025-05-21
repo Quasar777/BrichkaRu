@@ -1,0 +1,25 @@
+@use '../../../styles/helpers' as *;
+
+.myButton {
+    background: none;
+    border: none;
+    padding-block: rem(10);
+    padding-inline: rem(20);
+    color: var(--color-light);
+
+    &--accent {
+        background-color: var(--color-accent);
+        border-radius: rem(5);
+
+        @include hover {
+            background-color: #d97700;
+        }
+    }
+    
+    &:not(.myButton--accent) {
+        @include hover {
+            color: var(--color-accent);
+        }
+    }
+    
+}
