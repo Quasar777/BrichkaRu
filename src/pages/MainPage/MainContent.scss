@@ -4,6 +4,25 @@ main {
     padding-inline: rem(55);
 }
 
+.title-container {
+    display: flex;
+    column-gap: rem(25);
+    align-items: center;
+    margin-bottom: rem(30);
+
+    &__title {
+        font-weight: 600;
+        font-size: rem(32);
+    }
+
+    &__location {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: rem(5);
+    }
+}
+
 
 .mainPageCarsList {
     display: flex;

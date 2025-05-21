@@ -1,0 +1,13 @@
+@use '../../styles/helpers' as *;
+
+.footer {
+    background-color: var(--color-dark);
+    padding: rem(20);
+    margin-top: rem(50);
+    text-align: center;
+
+    &__copyright {
+        font-weight: 500;
+        color: var(--color-light);
+    }
+}

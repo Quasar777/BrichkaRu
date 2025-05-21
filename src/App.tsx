@@ -5,6 +5,7 @@ import MainPage from './pages/MainPage/MainPage';
 import Autos from './pages/Autos/Autos';
 import Trucks from './pages/Trucks/Trucks';
 import AdPage from './pages/AdPage/AdPage';
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='autos/:id' element={ <AdPage /> } />
         <Route path='trucks' element={ <Trucks /> } />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
