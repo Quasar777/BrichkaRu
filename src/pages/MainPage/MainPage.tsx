@@ -6,10 +6,8 @@ import MainContent from './MainContent';
 const MainPage = () => {
     return (
         <div>
-            <Header />
-            <main>
+            <main className='main'>
                 <MainContent />
-                <Outlet />
             </main>
         </div>
     );

@@ -9,12 +9,12 @@ import AdPage from './pages/AdPage/AdPage';
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path='/' element={ <MainPage /> }>
-          <Route path='autos' element={ <Autos /> } />
-          <Route path='autos/:id' element={ <AdPage /> } />
-          <Route path='trucks' element={ <Trucks /> } />
-        </Route>
+        <Route path='/' element={ <MainPage /> } />
+        <Route path='autos' element={ <Autos /> } />
+        <Route path='autos/:id' element={ <AdPage /> } />
+        <Route path='trucks' element={ <Trucks /> } />
       </Routes>
     </BrowserRouter>
   );
