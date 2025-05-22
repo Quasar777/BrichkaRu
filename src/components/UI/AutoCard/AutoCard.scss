@@ -1,0 +1,82 @@
+@use '../../../styles/helpers' as *;
+
+.autoCard {
+    display: flex;
+    background-color: #F9F9F9;
+    position: relative;
+
+    &__image {
+        border-radius: rem(5);
+    }
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-left: rem(60);
+        padding-right: rem(120);
+        padding-block: rem(30);
+    }
+
+    &__title {
+        font-size: rem(24);
+        font-weight: 600;
+        margin-bottom: rem(25);
+    }
+
+    &__carInfo-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(15);
+    }
+
+    &__carInfo-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: rem(15 );
+        font-weight: 400;
+    }
+
+    &__author-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__author-containter {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        row-gap: rem(10);
+    }
+
+    &__author {
+        font-weight: 500;
+    }
+
+    &__location {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: rem(5);
+        margin-left: -25px;
+
+        &-pin {
+            opacity: 0.7;
+        }
+    }
+
+    &__price {
+        text-align: left;
+        font-weight: 600;
+        font-size: rem(32);
+    }
+
+    &__like {
+        position: absolute;
+        right: rem(25);
+        top: rem(25);
+    }
+
+
+}
