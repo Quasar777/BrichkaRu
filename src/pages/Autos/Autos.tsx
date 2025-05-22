@@ -1,10 +1,11 @@
 import React from 'react';
+import FindAutoForm from '../../components/UI/FindAutoForm/FindAutoForm';
 
 const Autos = () => {
     return (
-        <div>
-            <p>Здесь будет страница с автомобилями</p>
-        </div>
+        <main className='main'>
+            <FindAutoForm />
+        </main>
     );
 }
 

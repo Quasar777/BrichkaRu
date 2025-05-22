@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from '../../components/Header/Header';
-import { Outlet } from 'react-router-dom';
-import MainContent from './MainContent';
+import MainAutoCard from '../../components/UI/MainAutoCard/MainAutoCard';
+import FindAutoForm from '../../components/UI/FindAutoForm/FindAutoForm';
+import "./MainContent.scss";
 
 const MainPage = () => {
     return (
         <div>
             <main className='main'>
-                <div className='title-container'>
+               <div className='title-container'>
                     <h1 className='title-container__title'>Главная</h1>
                     <div className='title-container__location'>
                         <img 
@@ -20,7 +20,20 @@ const MainPage = () => {
                         <p className='title-container__location-title'>Москва</p>
                     </div>
                 </div>
-                <MainContent />
+
+                <ul className='mainPageCarsList'>
+                    <li className='mainPageCarsList__item'>
+                        <MainAutoCard />
+                    </li>
+                    <li className='mainPageCarsList__item'>
+                        <MainAutoCard />
+                    </li>
+                    <li className='mainPageCarsList__item'>
+                        <MainAutoCard />
+                    </li>
+                </ul>
+                
+                <FindAutoForm />
             </main>
         </div>
     );
