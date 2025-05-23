@@ -1,9 +1,11 @@
 @use '../../styles/helpers' as *;
 
-.navbar {
-    border: 1px solid black;
+.header {
     background-color: var(--color-dark);
+}
 
+
+.navbar {    
     display: flex;
     justify-content: space-between;
     align-items: center;  

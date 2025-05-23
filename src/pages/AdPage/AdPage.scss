@@ -1,0 +1,108 @@
+@use '../../styles/helpers/' as *;
+
+main {
+    padding-inline: rem(55);
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(50);
+}
+
+
+.carInfo {
+    display: flex;
+        
+    &__image {
+        object-fit: cover;
+        width: 100%;
+        height: rem(530);
+    }
+
+    &__body {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: rem(20);
+    }
+
+    &__price {
+        font-size: rem(32);
+        font-weight: 500;
+        margin-bottom: rem(20);
+    }
+
+    &__leftSide {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(15);
+        margin-bottom: rem(20);
+    }
+
+    &__author {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: rem(15);
+    }
+
+    &__author-name {
+        font-size: rem(20);
+        font-weight: 500;
+    }
+
+    &__author-call {
+        display: flex;
+        color: #58B1FF;
+        align-items: center;
+    }
+
+    &__like {
+        display: flex;
+        align-items: center;
+        color: #FF8B8B;
+        gap: rem(5);
+        cursor: pointer;
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: rem(5);
+    }
+
+    &__rightSide {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: rem(60);
+        align-items: center;
+    }
+
+    &__author-box {
+        width: rem(190);
+        height: rem(190);
+        background-color: #F3F3F3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__descr {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+
+    &__complain {
+        display: flex;
+        align-items: center;
+        color: #FF2A2A;
+        gap: rem(10);
+    }
+
+}

@@ -1,0 +1,19 @@
+@use '../../../styles/helpers' as *;
+
+.title-container {
+    display: flex;
+    column-gap: rem(25);
+    align-items: center;
+
+    &__title {
+        font-weight: 600;
+        font-size: rem(32);
+    }
+
+    &__location {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: rem(5);
+    }
+}

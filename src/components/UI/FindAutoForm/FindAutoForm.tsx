@@ -11,7 +11,7 @@ const options: CheckboxGroupProps<string>['options'] = [
 
 const FindAutoForm = () => {
 
-    // на потом
+    
     let Models = {
         lada: [
             "Priora",
@@ -35,10 +35,22 @@ const FindAutoForm = () => {
     const [priceTo, setPriceTo] = useState(0);
     const [yearFrom, setYearFrom] = useState(0);
     const [yearTo, setYearTo] = useState(0);
+    const [modelOptions, setModelOptions] = useState<{ value: string, label: string }[]>([]);
+
 
     const onSelectedBrandChange = (value: string) => {
         setSelectedBrand(value);
         console.log("Марка: " + value);
+
+        const modelsForBrand = Models[value as keyof typeof Models] || [];
+
+        const formattedOptions = modelsForBrand.map(model => ({
+            value: model.toLowerCase().replace(/\s+/g, ''), 
+            label: model
+        }));
+
+        setModelOptions(formattedOptions);
+        setSelectedModel(""); 
     };
     const onSelectedModelChange = (value: string) => {
         setSelectedModel(value);
@@ -112,7 +124,9 @@ const FindAutoForm = () => {
                     hoverBorderColor: "transparent",
                     borderRadius: 5,    
                     optionFontSize: 16,
-                    fontSize: 16
+                    fontSize: 16,
+                    optionActiveBg: "#fff",
+                    optionSelectedBg: "#F9F9F9"
                 },
                 InputNumber: {
                     activeBorderColor: "transparent",
@@ -187,16 +201,8 @@ const FindAutoForm = () => {
                     placeholder="Модель"
                     optionFilterProp="label"
                     onChange={onSelectedModelChange}
-                    options={[
-                        {
-                            value: 'priora',
-                            label: 'Priora',
-                        },
-                        {
-                            value: 'vesta',
-                            label: 'Vesta',
-                        },
-                    ]}
+                    options={modelOptions}
+                    value={selectedModel || undefined}
                 />
                 <Select
                     className='filterForm__select'
