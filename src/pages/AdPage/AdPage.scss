@@ -13,8 +13,7 @@ main {
         
     &__image {
         object-fit: cover;
-        width: 100%;
-        height: rem(530);
+        border-radius: rem(5);
     }
 
     &__body {

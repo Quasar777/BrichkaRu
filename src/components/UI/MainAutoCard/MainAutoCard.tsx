@@ -7,10 +7,11 @@ interface mainAutoCardProps {
     title: String,
     location: String,
     year: Number,
-    pathToImage: String
+    pathToImage: String,
+    carId: Number
 }
 
-const MainAutoCard = ({price, title, location, year, pathToImage} : mainAutoCardProps) => {
+const MainAutoCard = ({price, title, location, year, pathToImage, carId} : mainAutoCardProps) => {
     function getNormalPrice(price: String) {
         if (price.length < 5)   
             return price;
@@ -38,7 +39,7 @@ const MainAutoCard = ({price, title, location, year, pathToImage} : mainAutoCard
     }
 
     return (
-        <Link to="/autos/1" className='mainCard'>
+        <Link to={`/autos/${carId}`} className='mainCard'>
             <div className='mainCard__image-container'>
                 <img 
                     src={pathToImage.toString()}

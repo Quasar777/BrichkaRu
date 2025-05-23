@@ -8,7 +8,7 @@ import { Carousel, ConfigProvider } from 'antd';
 
 const carData = [
     {
-        id: 1,
+        id: 10,
         pathToImage: "https://jetcar24.ru/wp-content/uploads/2024/07/5e7b7c235affe925d9166ba5d24b8fb9.jpg",
         title: "Bugatti Chiron",
         price: 1000000000,
@@ -42,7 +42,7 @@ const carData2 = [
         year: 2020
     },
     {
-        id: 2,
+        id: 11,
         pathToImage: "https://s0.rbk.ru/v6_top_pics/media/img/3/47/754788599938473.jpeg",
         title: "Lada Calina",
         price: 599000,
@@ -58,6 +58,7 @@ const carData2 = [
         year: 2015
     },
 ]
+
 
 const carouselStyle: React.CSSProperties = {
   paddingBottom: 20,
@@ -92,7 +93,8 @@ const MainPage = () => {
                         <ul style={carouselStyle} className='mainPageCarsList'>
                             {carData.map(carInfo => (
                                     <li className='mainPageCarsList__item'>
-                                        <MainAutoCard 
+                                        <MainAutoCard
+                                            carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 
@@ -109,6 +111,7 @@ const MainPage = () => {
                             {carData2.map(carInfo => (
                                     <li className='mainPageCarsList__item'>
                                         <MainAutoCard 
+                                            carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 
@@ -130,6 +133,7 @@ const MainPage = () => {
                             {carData.map(carInfo => (
                                     <li className='mainPageCarsList__item'>
                                         <MainAutoCard 
+                                            carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 
@@ -146,6 +150,7 @@ const MainPage = () => {
                             {carData2.map(carInfo => (
                                     <li className='mainPageCarsList__item'>
                                         <MainAutoCard 
+                                            carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 

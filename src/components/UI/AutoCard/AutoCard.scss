@@ -5,6 +5,11 @@
     background-color: #F9F9F9;
     position: relative;
 
+    @include hover  {
+        background-color: #e0e0e0 ;
+        transform: scale(0.99);
+    }
+
     &__image {
         border-radius: rem(5);
     }

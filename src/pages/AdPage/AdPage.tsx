@@ -4,32 +4,96 @@ import "./AdPage.scss"
 import MyButton from '../../components/UI/Button/MyButton';
 import { Button, Card, ConfigProvider } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { useParams } from 'react-router-dom';
+
+const carFakeData: Car[] = [
+  {
+    id: 10,
+    brand: "Bugatti",
+    model: "Chiron",
+    locationCity: "Москва",
+    locaionDistrict: "Митино",
+    pathToImage: "https://jetcar24.ru/wp-content/uploads/2024/07/5e7b7c235affe925d9166ba5d24b8fb9.jpg",
+    year: 2020,
+    price: 1_000_000_000,
+    engineType: "petrol",
+    enginePower: 1280,
+    gearBoxType: "Автомат",
+    bodyType: "Седан",
+    steeringWheelPosition: "left",
+    mileAge: 2300,
+  },
+  {
+    id: 11,
+    brand: "Lada",
+    model: "Calina",
+    locationCity: "Москва",
+    locaionDistrict: "Люблино",
+    pathToImage: "https://s0.rbk.ru/v6_top_pics/media/img/3/47/754788599938473.jpeg",
+    year: 2013,
+    price: 240_000,
+    engineType: "petrol",
+    enginePower: 112,
+    gearBoxType: "Механика",
+    bodyType: "Седан",
+    steeringWheelPosition: "left",
+    mileAge: 150000,
+  }
+];
+
+interface Car {
+  id: number;
+  brand: string;
+  model: string;
+  locationCity: string;
+  locaionDistrict: string;
+  pathToImage: string;
+  year: number;
+  price: number;
+  engineType: string;
+  enginePower: number;
+  gearBoxType: string;
+  bodyType: string;
+  steeringWheelPosition: "left" | "right";
+  mileAge: number;
+}
+
+
 
 const AdPage = () => {
+    
+    const { id } = useParams();
+    const numericId = Number(id);
+
+    const car = carFakeData.find(car => car.id === numericId);
+
+    if (!car) {
+        return <div>Такого автомобиля нет!</div>
+    }
     
     return (
         <div>
             <main className="main">
-                <PageTitle pageName="Объявление о продаже: Bugatti Chiron, 2021 год в Москве"/>
+                 <PageTitle pageName={`Объявление о продаже: ${car.brand} ${car.model}, ${car.year} год в ${car.locationCity}`} />
 
                 <section className='carInfo'>
                     <img 
-                        src="https://avatars.mds.yandex.net/get-autoru-vos/2142835/45d0fea7d0a703fcf53ed7ec7d3c3420/1200x900" 
+                        className='carInfo__image'
+                        src={car.pathToImage} 
                         alt="фотография машины"
                         width={660}
-                        height={530} 
+                        height={530}
                     />
                     <div className="carInfo__body">
                         <div className="carInfo__leftSide">
-                            <p className="carInfo__price">10 000 000 ₽</p>
+                            <p className="carInfo__price">{car.price.toLocaleString()} ₽</p>
                             <ul className='carInfo__list'>
-                                <li className="carInfo__item">Двигатель: <b>бензин</b></li>
-                                <li className="carInfo__item">Мощность: <b>1280 л.с.</b></li>
-                                <li className="carInfo__item">Коробка: <b>автомат</b></li>
-                                <li className="carInfo__item">Цвет: <b>бело-синий</b></li>
-                                <li className="carInfo__item">Тип кузова: <b>седан</b></li>
-                                <li className="carInfo__item">Руль: <b>левый</b></li>
-                                <li className="carInfo__item">Пробег: <b>2400 км</b></li>
+                                <li className="carInfo__item">Двигатель: <b>{car.engineType}</b></li>
+                                <li className="carInfo__item">Мощность: <b>{car.enginePower} л.с.</b></li>
+                                <li className="carInfo__item">Коробка: <b>{car.gearBoxType}</b></li>
+                                <li className="carInfo__item">Тип кузова: <b>{car.bodyType}</b></li>
+                                <li className="carInfo__item">Руль: <b>{car.steeringWheelPosition === "left" ? "левый" : "правый"}</b></li>
+                                <li className="carInfo__item">Пробег: <b>{car.mileAge.toLocaleString()} км</b></li>
                             </ul>
                             <Button color="default" variant="solid">
                                 Заказать отчет

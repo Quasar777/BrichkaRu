@@ -1,9 +1,10 @@
 import React from 'react';
 import "./AutoCard.scss"
+import { Link } from 'react-router-dom';
 
 const AutoCard = () => {
     return (
-        <div className='autoCard'>
+        <Link to="/autos/1" className='autoCard'>
             <img 
                 className='autoCard__image'
                 src="/autoCardExample.png" 
@@ -52,7 +53,7 @@ const AutoCard = () => {
                 
             </div>
 
-        </div>
+        </Link>
     );
 }
 
