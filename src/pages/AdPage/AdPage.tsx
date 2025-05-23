@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import "./AdPage.scss"
 import MyButton from '../../components/UI/Button/MyButton';
-import { Button, Card, ConfigProvider } from 'antd';
+import { Button, Card, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useParams } from 'react-router-dom';
 import { carFakeData, dealersFakeData } from '../../fakeData/carData';
 
 
 const AdPage = () => {
-    
+    const [phoneNumberOpen, setPhoneNumberOpen] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Номер телефона успешно скопирован',
+        });
+    };
+
+    function showNumber() {
+        setPhoneNumberOpen(true);
+    }
+
+    function copyNumber() {
+        const phoneNumber = dealer?.phoneNumber;
+        
+        if (!phoneNumber) {
+            return;
+        }
+
+        navigator.clipboard.writeText(phoneNumber.toString());
+        success();
+    }
+
     const { id } = useParams();
     const numericId = Number(id);
     const car = carFakeData.find(car => car.id === numericId);
@@ -72,7 +96,13 @@ const AdPage = () => {
                                 <p className='carInfo__author-status'>{dealer?.status}</p>
                                 <div className="carInfo__author-call">
                                     <div className="carInfo__author-call-title">
-                                        <Button style={{color: "#58B1FF"}} type="text">Позвонить</Button>
+                                        {contextHolder}
+                                        { !phoneNumberOpen 
+                                            ? <Button onClick={showNumber} style={{color: "#58B1FF"}} type="text">Позвонить</Button>
+                                            : <Button title='Скопировать' onClick={copyNumber} style={{color: "#58B1FF"}} type="text">{dealer?.phoneNumber}</Button>
+                                        }
+                                        
+                                        
                                     </div>
                                     <img
                                         alt='позвонить'
