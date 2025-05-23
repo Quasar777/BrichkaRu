@@ -5,76 +5,24 @@ import MyButton from '../../components/UI/Button/MyButton';
 import { Button, Card, ConfigProvider } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useParams } from 'react-router-dom';
-
-const carFakeData: Car[] = [
-  {
-    id: 10,
-    brand: "Bugatti",
-    model: "Chiron",
-    locationCity: "Москва",
-    locaionDistrict: "Митино",
-    pathToImage: "https://jetcar24.ru/wp-content/uploads/2024/07/5e7b7c235affe925d9166ba5d24b8fb9.jpg",
-    year: 2020,
-    price: 1_000_000_000,
-    engineType: "petrol",
-    enginePower: 1280,
-    gearBoxType: "Автомат",
-    bodyType: "Седан",
-    steeringWheelPosition: "left",
-    mileAge: 2300,
-  },
-  {
-    id: 11,
-    brand: "Lada",
-    model: "Calina",
-    locationCity: "Москва",
-    locaionDistrict: "Люблино",
-    pathToImage: "https://s0.rbk.ru/v6_top_pics/media/img/3/47/754788599938473.jpeg",
-    year: 2013,
-    price: 240_000,
-    engineType: "petrol",
-    enginePower: 112,
-    gearBoxType: "Механика",
-    bodyType: "Седан",
-    steeringWheelPosition: "left",
-    mileAge: 150000,
-  }
-];
-
-interface Car {
-  id: number;
-  brand: string;
-  model: string;
-  locationCity: string;
-  locaionDistrict: string;
-  pathToImage: string;
-  year: number;
-  price: number;
-  engineType: string;
-  enginePower: number;
-  gearBoxType: string;
-  bodyType: string;
-  steeringWheelPosition: "left" | "right";
-  mileAge: number;
-}
-
+import { carFakeData, dealersFakeData } from '../../fakeData/carData';
 
 
 const AdPage = () => {
     
     const { id } = useParams();
     const numericId = Number(id);
-
     const car = carFakeData.find(car => car.id === numericId);
-
     if (!car) {
         return <div>Такого автомобиля нет!</div>
     }
+
+    const dealer = dealersFakeData.find(d => d.adId === car.id)
     
     return (
         <div>
             <main className="main">
-                 <PageTitle pageName={`Объявление о продаже: ${car.brand} ${car.model}, ${car.year} год в ${car.locationCity}`} />
+                 <PageTitle pageName={`Объявление о продаже: ${car.brand} ${car.model}, ${car.year} год, ${car.locationCity}`} />
 
                 <section className='carInfo'>
                     <img 
@@ -120,8 +68,8 @@ const AdPage = () => {
                                         height={80} 
                                     />
                                 </div>
-                                <p className="carInfo__author-name">JETCAR</p>
-                                <p className='carInfo__author-status'>Автосалон</p>
+                                <p className="carInfo__author-name">{dealer?.name ?? "неизвестен"}</p>
+                                <p className='carInfo__author-status'>{dealer?.status}</p>
                                 <div className="carInfo__author-call">
                                     <div className="carInfo__author-call-title">
                                         <Button style={{color: "#58B1FF"}} type="text">Позвонить</Button>
@@ -138,18 +86,21 @@ const AdPage = () => {
                     </div>
                 </section>
                 <div className='carInfo__descr'>
-                    <Card style={{ width: 660 }}>
-                        <p>
-                            Новый, не битый не крашеный. Коробка чуть стучит, а так понторезка хорошая.
-                            <br/>
-                            ***
-                            <br/>
-                            Обмен не рассматириваю (ТОЛЬКО НА ПРИОРУ!!!)<br/> 
-                            ***
-                            <br/>
-                            Звоните, пишите! 
-                        </p>
-                    </Card>
+                    <div className='carInfo__descr-container'>
+                        <h3 className='carInfo__descr-title'>Описание</h3>
+                        <Card style={{ width: 660 }}>
+                            <p>
+                                Новый, не битый не крашеный. Коробка чуть стучит, а так понторезка хорошая.
+                                <br/>
+                                ***
+                                <br/>
+                                Обмен не рассматириваю (ТОЛЬКО НА ПРИОРУ!!!)<br/> 
+                                ***
+                                <br/>
+                                Звоните, пишите! 
+                            </p>
+                        </Card>
+                    </div>
                     <Button style={{border: "none"}} variant='text' className='carInfo__complain'>
                         <p className='carInfo__complain-text'>Пожаловаться на объявление</p>
                         <img 

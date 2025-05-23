@@ -5,6 +5,7 @@ import "./MainContent.scss";
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import { title } from 'process';
 import { Carousel, ConfigProvider } from 'antd';
+import { carFakeData } from '../../fakeData/carData';
 
 const carData = [
     {
@@ -16,7 +17,7 @@ const carData = [
         year: 2018
     },
     {
-        id: 2,
+        id: 123,
         pathToImage: "/RangeRover.png",
         title: "Range Rover",
         price: 34999000,
@@ -24,17 +25,15 @@ const carData = [
         year: 2014
     },
     {
-        id: 3,
+        id: 12,
         pathToImage: "https://classicsworld.co.uk/wp-content/uploads/sites/6/DSC_5982.jpg?w=900",
         title: "Range Rover 2",
         price: 900000,
         location: "Юго западная",
         year: 1980
     },
-]
-const carData2 = [
     {
-        id: 1,
+        id: 143,
         pathToImage: "https://bluesky.cdn.imgeng.in/cogstock-images/2c170cf5-ff61-4b0a-8f27-8e3ac5557859.jpg?migeng=/w_1200/cmpr_99/",
         title: "Lamborghini Aventador SVJ",
         price: 90_000_000,
@@ -91,15 +90,15 @@ const MainPage = () => {
                 <Carousel fade arrows autoplay autoplaySpeed={5000}>
                      <div>
                         <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carData.map(carInfo => (
+                            {carFakeData.slice(0, 3).map(carInfo => (
                                     <li className='mainPageCarsList__item'>
                                         <MainAutoCard
                                             carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 
-                                            title={carInfo.title}
-                                            location={carInfo.location}
+                                            title={`${carInfo.brand} ${carInfo.model}`}
+                                            location={carInfo.locationCity}
                                             year={carInfo.year}
                                         />
                                     </li>
@@ -108,15 +107,15 @@ const MainPage = () => {
                     </div>
                     <div>
                         <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carData2.map(carInfo => (
+                            {carFakeData.slice(3).map(carInfo => (
                                     <li className='mainPageCarsList__item'>
                                         <MainAutoCard 
                                             carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 
-                                            title={carInfo.title}
-                                            location={carInfo.location}
+                                            title={`${carInfo.brand} ${carInfo.model}`}
+                                            location={carInfo.locationCity}
                                             year={carInfo.year}
                                         />
                                     </li>
@@ -128,17 +127,17 @@ const MainPage = () => {
                 <FindAutoForm />
 
                 <Carousel fade arrows autoplay autoplaySpeed={5000}>
-                     <div>
+                    <div>
                         <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carData.map(carInfo => (
+                            {carFakeData.slice(0, 3).map(carInfo => (
                                     <li className='mainPageCarsList__item'>
-                                        <MainAutoCard 
+                                        <MainAutoCard
                                             carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 
-                                            title={carInfo.title}
-                                            location={carInfo.location}
+                                            title={`${carInfo.brand} ${carInfo.model}`}
+                                            location={carInfo.locationCity}
                                             year={carInfo.year}
                                         />
                                     </li>
@@ -147,15 +146,15 @@ const MainPage = () => {
                     </div>
                     <div>
                         <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carData2.map(carInfo => (
+                            {carFakeData.slice(3).map(carInfo => (
                                     <li className='mainPageCarsList__item'>
                                         <MainAutoCard 
                                             carId={carInfo.id} 
                                             key={carInfo.id}
                                             pathToImage={carInfo.pathToImage}
                                             price={carInfo.price} 
-                                            title={carInfo.title}
-                                            location={carInfo.location}
+                                            title={`${carInfo.brand} ${carInfo.model}`}
+                                            location={carInfo.locationCity}
                                             year={carInfo.year}
                                         />
                                     </li>

@@ -1,0 +1,117 @@
+import { Car, Dealer } from "../types/Car";
+
+export const carFakeData: Car[] = [
+  {
+    id: 1,
+    brand: "Bugatti",
+    model: "Chiron",
+    locationCity: "Москва",
+    locaionDistrict: "митино",
+    pathToImage: "https://jetcar24.ru/wp-content/uploads/2024/07/5e7b7c235affe925d9166ba5d24b8fb9.jpg",
+    year: 2020,
+    price: 1_000_000_000,
+    engineType: "бензиновый",
+    enginePower: 1280,
+    gearBoxType: "автомат",
+    bodyType: "седан",
+    steeringWheelPosition: "left",
+    mileAge: 2300
+  },
+  {
+    id: 2,
+    brand: "Lada",
+    model: "Calina",
+    locationCity: "Москва",
+    locaionDistrict: "люблино",
+    pathToImage: "https://s0.rbk.ru/v6_top_pics/media/img/3/47/754788599938473.jpeg",
+    year: 2013,
+    price: 240_000,
+    engineType: "бензиновый",
+    enginePower: 112,
+    gearBoxType: "механика",
+    bodyType: "седан",
+    steeringWheelPosition: "left",
+    mileAge: 150000
+  },
+  {
+    id: 3,
+    brand: "Land Rover",
+    model: "Range Rover",
+    locationCity: "Москва",
+    locaionDistrict: "мытищи",
+    pathToImage: "/rangerover.png",
+    year: 2014,
+    price: 34_999_000,
+    engineType: "дизельный",
+    enginePower: 339,
+    gearBoxType: "автомат",
+    bodyType: "внедорожник",
+    steeringWheelPosition: "left",
+    mileAge: 95000
+  },
+  {
+    id: 4,
+    brand: "Land Rover",
+    model: "SV30",
+    locationCity: "Москва",
+    locaionDistrict: "юго-западная",
+    pathToImage: "https://classicsworld.co.uk/wp-content/uploads/sites/6/dsc_5982.jpg?w=900",
+    year: 1980,
+    price: 900_000,
+    engineType: "бензиновый",
+    enginePower: 150,
+    gearBoxType: "механика",
+    bodyType: "внедорожник",
+    steeringWheelPosition: "left",
+    mileAge: 250000
+  },
+  {
+    id: 5,
+    brand: "Lamborghini",
+    model: "Aventador Svj",
+    locationCity: "Москва",
+    locaionDistrict: "митино",
+    pathToImage: "https://bluesky.cdn.imgeng.in/cogstock-images/2c170cf5-ff61-4b0a-8f27-8e3ac5557859.jpg?migeng=/w_1200/cmpr_99/",
+    year: 2020,
+    price: 90_000_000,
+    engineType: "бензиновый",
+    enginePower: 770,
+    gearBoxType: "автомат",
+    bodyType: "купе",
+    steeringWheelPosition: "left",
+    mileAge: 6000
+  },
+  {
+    id: 6,
+    brand: "Land Rover",
+    model: "Range Rover Sport",
+    locationCity: "Москва",
+    locaionDistrict: "шоссе энтузиастов",
+    pathToImage: "https://media.production.jlrms.com/styles/hero_crop/s3/2024-08-06/image/312d52cd-c83e-4131-b121-cbec328f65c0/RRS_SV_Edition_Two_25MY_01_Nebula_Blue_070824.jpg?VersionId=yW_ZNHltSghBKkN7ekS5PuErVlS4RGrb&h=dfb1210d&itok=3KFjkdZQ",
+    year: 2015,
+    price: 18_000_000,
+    engineType: "дизельный",
+    enginePower: 340,
+    gearBoxType: "автомат",
+    bodyType: "внедорожник",
+    steeringWheelPosition: "left",
+    mileAge: 83000
+  }
+]
+
+export const dealersFakeData: Dealer[] = [
+  {
+    id: 1,
+    name: "JETCAR",
+    status: "Автосалон",
+    phoneNumber: "+7-999-888-99-88",
+    adId: 1
+  },
+  {
+    id: 2,
+    name: "Сармат",
+    status: "Частное лицо",
+    phoneNumber: "+7-933-878-22-22",
+    adId: 2
+  }
+]

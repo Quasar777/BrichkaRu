@@ -94,6 +94,10 @@ main {
     &__descr {
         display: flex;
         justify-content: space-between;
+
+        &-title {
+            margin-bottom: rem(10);
+        }
         
     }
 
