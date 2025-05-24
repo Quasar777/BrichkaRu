@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { carFakeData, dealersFakeData } from '../../../fakeData/carData';
 
 
+
 const AutoCard = ({carId}: {carId : number}) => {
     function getNormalPrice(price: string | undefined) {
         if (!price){

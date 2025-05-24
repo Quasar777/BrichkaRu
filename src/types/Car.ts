@@ -18,9 +18,20 @@ export type Car = {
 
 
 export type Dealer = {
-  id: number,
-  name: string,
-  status: "Автосалон" | "Частное лицо" | "Юридическое лицо",
-  phoneNumber: string,
-  adId: number
+  id: number;
+  name: string;
+  status: "Автосалон" | "Частное лицо" | "Юридическое лицо";
+  phoneNumber: string;
+  adId: number;
+}
+
+export type DataToSearchProps = {
+  selectedBrand: string;
+  selectedModel: string;
+  selectedGearBox: "mechanical" | "automatic" | "robot" | "variator";
+  selectedEngine: "petrol" | "electric" | "diesel" | "hybrid";
+  priceFrom: number;
+  priceTo: number;
+  yearFrom: number;
+  yearTo: number;
 }

@@ -16,6 +16,7 @@ function App() {
         <Route path='autos' element={ <Autos /> } />
         <Route path='autos/:id' element={ <AdPage /> } />
         <Route path='trucks' element={ <Trucks /> } />
+        
       </Routes>
       <Footer />
     </BrowserRouter>

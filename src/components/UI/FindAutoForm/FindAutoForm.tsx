@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./FindAutoForm.scss"
 import { Select, Button, ConfigProvider, Radio, InputNumber, InputNumberProps } from 'antd';
 import type { CheckboxGroupProps } from 'antd/es/checkbox';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const options: CheckboxGroupProps<string>['options'] = [
   { label: 'Все', value: 'allCars' },
@@ -9,10 +10,7 @@ const options: CheckboxGroupProps<string>['options'] = [
   { label: 'Б/У', value: 'usedCars' },
 ];
 
-const FindAutoForm = () => {
-
-    
-    let Models = {
+let Models = {
         lada: [
             "Priora",
             "Vesta"
@@ -27,6 +25,44 @@ const FindAutoForm = () => {
         ]
     }
 
+const FindAutoForm = () => {
+
+    const useQuery = () => {
+        return new URLSearchParams(useLocation().search);
+    };
+
+    const query = useQuery();
+
+    useEffect(() => {
+        const brand = query.get('brand') || '';
+        const model = query.get('model') || '';
+        const engine = query.get('engine') || '';
+        const gearbox = query.get('gearbox') || '';
+        const priceFrom = Number(query.get('priceFrom')) || 0;
+        const priceTo = Number(query.get('priceTo')) || 0;
+        const yearFrom = Number(query.get('yearFrom')) || 0;
+        const yearTo = Number(query.get('yearTo')) || 0;
+
+        setSelectedBrand(brand);
+        setSelectedModel(model);
+        setSelectedEngine(engine);
+        setSelectedGearBox(gearbox);
+        setPriceFrom(priceFrom);
+        setPriceTo(priceTo);
+        setYearFrom(yearFrom);
+        setYearTo(yearTo);
+
+
+        if (brand) {
+            const modelsForBrand = Models[brand as keyof typeof Models] || [];
+            const formattedOptions = modelsForBrand.map(model => ({
+            value: model.toLowerCase().replace(/\s+/g, ''),
+            label: model
+            }));
+            setModelOptions(formattedOptions);
+        }
+    }, []);
+
     const [selectedBrand, setSelectedBrand] = useState("")
     const [selectedModel, setSelectedModel] = useState("")
     const [selectedEngine, setSelectedEngine] = useState("")
@@ -36,8 +72,9 @@ const FindAutoForm = () => {
     const [yearFrom, setYearFrom] = useState(0);
     const [yearTo, setYearTo] = useState(0);
     const [modelOptions, setModelOptions] = useState<{ value: string, label: string }[]>([]);
+    const navigate = useNavigate();
 
-
+    
     const onSelectedBrandChange = (value: string) => {
         setSelectedBrand(value);
         console.log("Марка: " + value);
@@ -98,18 +135,19 @@ const FindAutoForm = () => {
     };
     
     const onSubmitButtonClick = () => {
-        alert("clicked");
-        const dataToSearch = {
-            selectedBrand,
-            selectedModel,
-            selectedGearBox,
-            selectedEngine,
-            priceFrom,
-            priceTo,
-            yearFrom,
-            yearTo
-        }
-        console.log(dataToSearch)
+        
+        const params = new URLSearchParams({
+            brand: selectedBrand,
+            model: selectedModel,
+            engine: selectedEngine,
+            gearbox: selectedGearBox,
+            priceFrom: priceFrom.toString(),
+            priceTo: priceTo.toString(),
+            yearFrom: yearFrom.toString(),
+            yearTo: yearTo.toString(),
+        });
+
+        navigate(`/autos?${params.toString()}`);
     }
 
 
@@ -178,6 +216,7 @@ const FindAutoForm = () => {
                     className='filterForm__select'
                     showSearch
                     placeholder="Марка"
+                    value={selectedBrand || undefined}
                     optionFilterProp="label"
                     onChange={onSelectedBrandChange}
                     options={[
@@ -208,6 +247,7 @@ const FindAutoForm = () => {
                     className='filterForm__select'
                     showSearch
                     placeholder="КПП"
+                    value={selectedGearBox || undefined}
                     optionFilterProp="label"
                     onChange={onSelectedGearBoxChange}
                     options={[
@@ -231,17 +271,18 @@ const FindAutoForm = () => {
                 />
                 
                 <div className='filterForm__shortContainer'>
-                    <InputNumber className='filterForm__input' min={1} max={10000000000} placeholder='Цена от, ₽' onChange={onPriceFromChange} />
-                    <InputNumber className='filterForm__input' min={1} max={10000000000} placeholder='до' onChange={onPriceToChange} />
+                    <InputNumber value={priceFrom || undefined} className='filterForm__input' min={1} max={10000000000} placeholder='Цена от, ₽' onChange={onPriceFromChange} />
+                    <InputNumber value={priceTo || undefined} className='filterForm__input' min={1} max={10000000000} placeholder='до' onChange={onPriceToChange} />
                 </div>
                 <div className='filterForm__shortContainer'>
-                    <InputNumber className='filterForm__input' min={1000} max={2030} placeholder='Год от' onChange={onYearFromChange} />
-                    <InputNumber className='filterForm__input' min={1000} max={2030} placeholder='до' onChange={onYearToChange} />
+                    <InputNumber value={yearFrom || undefined} className='filterForm__input' min={1000} max={2030} placeholder='Год от' onChange={onYearFromChange} />
+                    <InputNumber value={yearTo || undefined} className='filterForm__input' min={1000} max={2030} placeholder='до' onChange={onYearToChange} />
                 </div>
                 <Select
                     className='filterForm__select'
                     showSearch
                     placeholder="Тип двигателя"
+                    value={selectedEngine || undefined}
                     optionFilterProp="label"
                     onChange={onSelectedEngineTypeChange}
                     options={[
