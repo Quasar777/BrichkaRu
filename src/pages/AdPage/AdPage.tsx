@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import "./AdPage.scss"
 import MyButton from '../../components/UI/Button/MyButton';
-import { Button, Card, message } from 'antd';
+import { Button, Card, message, Modal } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useParams } from 'react-router-dom';
 import { carFakeData, dealersFakeData } from '../../fakeData/carData';
@@ -11,11 +11,29 @@ import { carFakeData, dealersFakeData } from '../../fakeData/carData';
 const AdPage = () => {
     const [phoneNumberOpen, setPhoneNumberOpen] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
+    const [complainModalopen, setcomplainModalOpen] = useState(false);
+    const [complainMessage, setComplainMessage] = useState("");
+
+    const showComplainModal = () => {
+        setcomplainModalOpen(true);
+    };
+
+    const showSuccessComplained = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'Жалоба успешно отправлена!',
+        });
+        setcomplainModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setcomplainModalOpen(false);
+    };
 
     const success = () => {
-    messageApi.open({
-      type: 'success',
-      content: 'Номер телефона успешно скопирован',
+        messageApi.open({
+            type: 'success',
+            content: 'Номер телефона успешно скопирован!',
         });
     };
 
@@ -62,6 +80,7 @@ const AdPage = () => {
                             <ul className='carInfo__list'>
                                 <li className="carInfo__item">Двигатель: <b>{car.engineType}</b></li>
                                 <li className="carInfo__item">Мощность: <b>{car.enginePower} л.с.</b></li>
+                                <li className="carInfo__item">Объем: <b>{car.engineVolume} л.</b></li>
                                 <li className="carInfo__item">Коробка: <b>{car.gearBoxType}</b></li>
                                 <li className="carInfo__item">Тип кузова: <b>{car.bodyType}</b></li>
                                 <li className="carInfo__item">Руль: <b>{car.steeringWheelPosition === "left" ? "левый" : "правый"}</b></li>
@@ -129,12 +148,46 @@ const AdPage = () => {
                             </p>
                         </Card>
                     </div>
-                    <Button variant='text' className='carInfo__complain'>
+                    <Button onClick={showComplainModal} variant='text' className='carInfo__complain'>
                         <p className='carInfo__complain-text'>Пожаловаться на объявление</p>
                         <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M44.6875 27.5C44.6875 36.9923 36.9923 44.6875 27.5 44.6875C18.0076 44.6875 10.3125 36.9923 10.3125 27.5C10.3125 18.0076 18.0076 10.3125 27.5 10.3125C36.9923 10.3125 44.6875 18.0076 44.6875 27.5ZM48.125 27.5C48.125 38.891 38.891 48.125 27.5 48.125C16.1091 48.125 6.875 38.891 6.875 27.5C6.875 16.1091 16.1091 6.875 27.5 6.875C38.891 6.875 48.125 16.1091 48.125 27.5ZM25.7812 30.9375V18.9062H29.2188V30.9375H25.7812ZM25.7812 36.0938V32.6562H29.2188V36.0938H25.7812Z" fill="#FF2A2A"/>
                         </svg>
                     </Button>
+                    <Modal
+                        open={complainModalopen}
+                        title="Пожаловаться"
+                        onCancel={handleCancel}
+                        footer={[
+                            <Button 
+                                disabled={complainMessage.length < 20} 
+                                key="submit" 
+                                type="primary" 
+                                onClick={showSuccessComplained}
+                            >
+                                Отправить жалобу
+                            </Button>,
+                            <Button key="back" onClick={handleCancel}>
+                                Отмена
+                            </Button>                        
+                        ]}
+                        maskClosable={true}
+                        bodyStyle={{ overflowY: 'auto' }}
+                        modalRender={(modal) => (
+                            <div style={{ overflow: 'hidden' }}>{modal}</div>
+                        )}
+                        // можно попробовать также
+                        getContainer={false} 
+                    >
+                        <TextArea 
+                            className='carInfo__complainModal-textarea' 
+                            rows={4} 
+                            value={complainMessage} 
+                            onChange={e => setComplainMessage(e.target.value)}
+                            maxLength={200} 
+                            placeholder='Опишите нарушение (не менее 20 символов)' 
+                        />                
+                    </Modal>
                 </div>
             </main>
         </div>

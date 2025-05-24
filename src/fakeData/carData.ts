@@ -15,7 +15,8 @@ export const carFakeData: Car[] = [
     gearBoxType: "автомат",
     bodyType: "седан",
     steeringWheelPosition: "left",
-    mileAge: 2300
+    mileAge: 2300,
+    engineVolume: 8,
   },
   {
     id: 2,
@@ -31,7 +32,9 @@ export const carFakeData: Car[] = [
     gearBoxType: "механика",
     bodyType: "седан",
     steeringWheelPosition: "left",
-    mileAge: 150000
+    mileAge: 150000,
+    engineVolume: 1.7,
+
   },
   {
     id: 3,
@@ -47,7 +50,8 @@ export const carFakeData: Car[] = [
     gearBoxType: "автомат",
     bodyType: "внедорожник",
     steeringWheelPosition: "left",
-    mileAge: 95000
+    mileAge: 95000,
+    engineVolume: 3,
   },
   {
     id: 4,
@@ -63,7 +67,8 @@ export const carFakeData: Car[] = [
     gearBoxType: "механика",
     bodyType: "внедорожник",
     steeringWheelPosition: "left",
-    mileAge: 250000
+    mileAge: 250000,
+    engineVolume: 3,
   },
   {
     id: 5,
@@ -79,7 +84,8 @@ export const carFakeData: Car[] = [
     gearBoxType: "автомат",
     bodyType: "купе",
     steeringWheelPosition: "left",
-    mileAge: 6000
+    mileAge: 6000,
+    engineVolume: 3,
   },
   {
     id: 6,
@@ -95,7 +101,8 @@ export const carFakeData: Car[] = [
     gearBoxType: "автомат",
     bodyType: "внедорожник",
     steeringWheelPosition: "left",
-    mileAge: 83000
+    mileAge: 83000,
+    engineVolume: 3,
   }
 ]
 

@@ -14,9 +14,9 @@ const Autos = () => {
             <p className='adFound__title'>Нашлось объявлений: 3</p>
 
             <ul className="autosList">
-                <li className="autosList__item"><AutoCard /></li>
-                <li className="autosList__item"><AutoCard /></li>
-                <li className="autosList__item"><AutoCard /></li>
+                <li className="autosList__item"><AutoCard carId={1} /></li>
+                <li className="autosList__item"><AutoCard carId={2} /></li>
+                <li className="autosList__item"><AutoCard carId={3} /></li>
             </ul>
             
         </main>

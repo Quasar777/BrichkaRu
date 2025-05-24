@@ -110,4 +110,8 @@ main {
         gap: rem(10);
     }
 
+    &__complainModal-textarea {
+        max-height: rem(200);
+    }
+
 }

@@ -12,30 +12,11 @@ interface mainAutoCardProps {
 }
 
 const MainAutoCard = ({price, title, location, year, pathToImage, carId} : mainAutoCardProps) => {
-    function getNormalPrice(price: String) {
-        if (price.length < 5)   
-            return price;
-        else if(price.length == 5) {
-            return price.substring(0, 2) + ' ' + price.substring(2);
+    function getNormalPrice(price: string | undefined) {
+        if (!price){
+            return "ошибка";
         }
-        else if(price.length == 6) {
-            return price.substring(0, 3) + ' ' + price.substring(3);
-        }
-        else if(price.length == 7) {
-            return price[0] + ' ' + price.substring(1, 4) + ' ' + price.substring(4);
-        }
-        else if(price.length == 8) {
-            return price.substring(0, 2) + ' ' + price.substring(2, 5) + ' ' + price.substring(5);
-        }
-        else if(price.length == 9) {
-            return price.substring(0, 3) + ' ' + price.substring(3, 6) + ' ' + price.substring(6);
-        }
-        else if(price.length == 10) {
-            return price[0] + ' ' + price.substring(1, 4) + ' ' + price.substring(4, 7) + ' ' + price.substring(7);
-        }
-        else if(price.length > 10) {
-            return "Много"
-        }
+        return price.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
 
     return (
