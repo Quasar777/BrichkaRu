@@ -13,19 +13,30 @@ const options: CheckboxGroupProps<string>['options'] = [
 let Models = {
         lada: [
             "Priora",
-            "Vesta"
+            "Vesta",
+            "Calina"
         ],
         porsche: [
             "Cayene",
             "Panamera"
         ],
-        rangeRover: [
-            "Range Rover Land Rover",
-            "Range Rover Sport"
+        rangerover: [
+            "Land Rover",
+            "Sport"
         ]
     }
 
 const FindAutoForm = () => {
+    const [selectedBrand, setSelectedBrand] = useState("")
+    const [selectedModel, setSelectedModel] = useState("")
+    const [selectedEngine, setSelectedEngine] = useState("")
+    const [selectedGearBox, setSelectedGearBox] = useState("")
+    const [priceFrom, setPriceFrom] = useState(0);
+    const [priceTo, setPriceTo] = useState(0);
+    const [yearFrom, setYearFrom] = useState(0);
+    const [yearTo, setYearTo] = useState(0);
+    const [modelOptions, setModelOptions] = useState<{ value: string, label: string }[]>([]);
+    const navigate = useNavigate();
 
     const useQuery = () => {
         return new URLSearchParams(useLocation().search);
@@ -52,7 +63,6 @@ const FindAutoForm = () => {
         setYearFrom(yearFrom);
         setYearTo(yearTo);
 
-
         if (brand) {
             const modelsForBrand = Models[brand as keyof typeof Models] || [];
             const formattedOptions = modelsForBrand.map(model => ({
@@ -62,18 +72,6 @@ const FindAutoForm = () => {
             setModelOptions(formattedOptions);
         }
     }, []);
-
-    const [selectedBrand, setSelectedBrand] = useState("")
-    const [selectedModel, setSelectedModel] = useState("")
-    const [selectedEngine, setSelectedEngine] = useState("")
-    const [selectedGearBox, setSelectedGearBox] = useState("")
-    const [priceFrom, setPriceFrom] = useState(0);
-    const [priceTo, setPriceTo] = useState(0);
-    const [yearFrom, setYearFrom] = useState(0);
-    const [yearTo, setYearTo] = useState(0);
-    const [modelOptions, setModelOptions] = useState<{ value: string, label: string }[]>([]);
-    const navigate = useNavigate();
-
     
     const onSelectedBrandChange = (value: string) => {
         setSelectedBrand(value);
@@ -133,7 +131,6 @@ const FindAutoForm = () => {
         console.log("Неверное значение верхнего года: ", value);
     }
     };
-    
     const onSubmitButtonClick = () => {
         
         const params = new URLSearchParams({
@@ -229,7 +226,7 @@ const FindAutoForm = () => {
                             label: 'Porsche',
                         },
                         {
-                            value: 'rangeRover',
+                            value: 'rangerover',
                             label: 'Range rover',
                         },
                     ]}

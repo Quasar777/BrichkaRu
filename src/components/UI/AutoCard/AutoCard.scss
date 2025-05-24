@@ -39,7 +39,8 @@
     &__carInfo-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: rem(15 );
+        gap: rem(15);
+        width: rem(261);
         font-weight: 400;
     }
 

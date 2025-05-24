@@ -1,0 +1,21 @@
+@use "../../../styles/helpers/" as *;
+
+
+.error {
+    display: flex;
+    justify-content: center;
+
+    &__container {
+        padding: rem(15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: rem(15);
+    }
+
+    &__message {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+}

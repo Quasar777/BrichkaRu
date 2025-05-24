@@ -1,10 +1,12 @@
-import { Car, Dealer } from "../types/Car";
+import { Car } from "../types/Car";
+import { Dealer } from "../types/Dealer";
 
 export const carFakeData: Car[] = [
   {
     id: 1,
     brand: "Bugatti",
     model: "Chiron",
+    code: "chiron",
     locationCity: "Москва",
     locaionDistrict: "митино",
     pathToImage: "https://jetcar24.ru/wp-content/uploads/2024/07/5e7b7c235affe925d9166ba5d24b8fb9.jpg",
@@ -22,6 +24,7 @@ export const carFakeData: Car[] = [
     id: 2,
     brand: "Lada",
     model: "Calina",
+    code: "calina",
     locationCity: "Москва",
     locaionDistrict: "люблино",
     pathToImage: "https://s0.rbk.ru/v6_top_pics/media/img/3/47/754788599938473.jpeg",
@@ -38,8 +41,9 @@ export const carFakeData: Car[] = [
   },
   {
     id: 3,
-    brand: "Land Rover",
-    model: "Range Rover",
+    brand: "Range Rover",
+    model: "Land Rover",
+    code: "landrover",
     locationCity: "Москва",
     locaionDistrict: "мытищи",
     pathToImage: "/rangerover.png",
@@ -57,6 +61,7 @@ export const carFakeData: Car[] = [
     id: 4,
     brand: "Land Rover",
     model: "SV30",
+    code: "sv30",
     locationCity: "Москва",
     locaionDistrict: "юго-западная",
     pathToImage: "https://classicsworld.co.uk/wp-content/uploads/sites/6/dsc_5982.jpg?w=900",
@@ -73,7 +78,8 @@ export const carFakeData: Car[] = [
   {
     id: 5,
     brand: "Lamborghini",
-    model: "Aventador Svj",
+    model: "Aventador SVJ",
+    code: "aventadorsvj",
     locationCity: "Москва",
     locaionDistrict: "митино",
     pathToImage: "https://bluesky.cdn.imgeng.in/cogstock-images/2c170cf5-ff61-4b0a-8f27-8e3ac5557859.jpg?migeng=/w_1200/cmpr_99/",
@@ -89,8 +95,9 @@ export const carFakeData: Car[] = [
   },
   {
     id: 6,
-    brand: "Land Rover",
-    model: "Range Rover Sport",
+    brand: "Range Rover",
+    model: "Sport",
+    code: "sport",
     locationCity: "Москва",
     locaionDistrict: "шоссе энтузиастов",
     pathToImage: "https://media.production.jlrms.com/styles/hero_crop/s3/2024-08-06/image/312d52cd-c83e-4131-b121-cbec328f65c0/RRS_SV_Edition_Two_25MY_01_Nebula_Blue_070824.jpg?VersionId=yW_ZNHltSghBKkN7ekS5PuErVlS4RGrb&h=dfb1210d&itok=3KFjkdZQ",

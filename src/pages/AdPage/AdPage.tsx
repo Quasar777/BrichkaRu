@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { carFakeData, dealersFakeData } from '../../fakeData/carData';
 
 
+
 const AdPage = () => {
     const [phoneNumberOpen, setPhoneNumberOpen] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
