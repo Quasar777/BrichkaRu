@@ -18,7 +18,6 @@ const Autos = () => {
     };
 
     function getNormalEngineType(str : string) {
-        console.log("в функцию пришло: " + str)
         switch (str) {
             case "бензиновый":
                 return 'petrol'
@@ -28,6 +27,21 @@ const Autos = () => {
                 return 'electric'
             case "гибрид":
                 return 'hybrid'  
+            default:
+                return ""  
+        }
+    }
+
+    function getNormalGearboxType(str : string) {
+        switch (str) {
+            case "механика":
+                return 'mechanical'
+            case "автомат":
+                return 'automatic'
+            case "вариатор":
+                return 'variator'
+            case "робот":
+                return 'robot'  
             default:
                 return ""  
         }
@@ -56,25 +70,13 @@ const Autos = () => {
             yearTo: yearTo,
         }
 
-        function filterCars() {
-            if (brand !== "") {
-                setFilteredAutoIDs(filteredAutoIDs = carFakeData   
-                    .filter(car => {
-                        const formattedBrand = car.brand.replaceAll(" ", "").toLocaleLowerCase();
-                        return formattedBrand === brand;
-                    })
-                    .map(car => car.id)
-                )
-            }
-        }
-
         const filtered = carFakeData.filter(car => {
             const formattedBrand = car.brand.replaceAll(" ", "").toLocaleLowerCase();
             const formattedModel = car.model.replaceAll(" ", "").toLocaleLowerCase();
             const formattedEngine = getNormalEngineType(car.engineType.replaceAll(" ", ""));
-            const formattedGearbox = car.gearBoxType.replaceAll(" ", "").toLocaleLowerCase();
+            const formattedGearbox = getNormalGearboxType(car.gearBoxType.replaceAll(" ", "").toLocaleLowerCase());
             
-            console.log(formattedEngine, "VS", engine)
+            console.log(formattedGearbox, "VS", gearbox)
 
             return (
             (!brand || formattedBrand === brand) &&
@@ -88,7 +90,6 @@ const Autos = () => {
             );
         });
 
-        // filterCars();
         setFilteredAutoIDs(filtered.map(car => car.id))
         console.log("filtered!")
         console.log(filteredAutoIDs);
