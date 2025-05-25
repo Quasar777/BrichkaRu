@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import "./CreateAdForm.scss"
 import { Select, DatePicker, DatePickerProps, InputNumber, InputNumberProps, Radio, Input, Button } from 'antd';
 import type { CheckboxGroupProps } from 'antd/es/checkbox';
@@ -13,6 +13,7 @@ const SteeringWheeloptions: CheckboxGroupProps<string>['options'] = [
   { label: 'Правый', value: 'right' },
 ];
 
+// логика для правильной конвертации номера
 const LATIN_TO_CYRILLIC: Record<string, string> = {
   A: 'А',
   B: 'В',
@@ -27,17 +28,15 @@ const LATIN_TO_CYRILLIC: Record<string, string> = {
   X: 'Х',
   Y: 'У',
 };
-
 const ALLOWED_CYRILLIC = Object.values(LATIN_TO_CYRILLIC);
 
+// логика для элемента Upload (не совсем понятно че к чему тут..)
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
-
 const getBase64 = (img: FileType, callback: (url: string) => void) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result as string));
     reader.readAsDataURL(img);
 };
-
 const beforeUpload = (file: FileType) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
@@ -153,7 +152,7 @@ const CreateAdForm = () => {
             description,
         };
 
-        if (!selectedBrand || !selectedModel || !selectedYear || !carNumber) {
+        if (!selectedBrand || !selectedModel || !carNumber) {
             showInvalidInputError();
             return;
         }
@@ -161,7 +160,6 @@ const CreateAdForm = () => {
         console.log("Данные для отправки:", dataToSend);
     }
 
-    
     const uploadButton = (
         <button style={{ border: 0, background: 'none' }} type="button">
         {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -171,8 +169,8 @@ const CreateAdForm = () => {
     
     return (
         <form className='createAdForm'>
-            <div className='createAdForm__item'>
-                <p className='createAdForm__item-title'>Марка и модель</p>
+            <div className='createAdForm__item' >
+                <p className='createAdForm__item-title createAdForm__item-title--required'>Марка и модель</p>
                 <Select
                     className='createAdForm__select createAdForm__input'
                     showSearch
@@ -278,13 +276,13 @@ const CreateAdForm = () => {
             </div>
 
             <div className='createAdForm__item'>
-                <p className='createAdForm__item-title'>Гос. номер для проверки автомобиля</p>
+                <p className='createAdForm__item-title createAdForm__item-title--required'>Гос. номер для проверки автомобиля</p>
                 <div className='createAdForm__carNumber-input'>
                     <Input 
-                        className='createAdForm__input'
+                        className='createAdForm__input '
                         value={carNumber}
                         onChange={handleCarNumberChange}
-                        placeholder="Госномер (A000AA000 или A000AA00)"
+                        placeholder="A000AA00"
                         maxLength={9}
                     />
                 </div>
@@ -315,7 +313,6 @@ const CreateAdForm = () => {
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
-                {description}
             </div>
             
             {contextHolder}

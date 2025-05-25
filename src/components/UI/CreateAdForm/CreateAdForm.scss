@@ -17,16 +17,27 @@
             margin-bottom: rem(5);
             font-size: rem(18);
             font-weight: 500;
+            position: relative;
+        
+            &--required::before {
+                content: "*";
+                position: absolute;
+                left: -12px;
+                top: 0;
+                color: red;
+                font-size: 16px;
+                line-height: 1;
+            }
         }
     }
 
-    &__input {
-        width: 100%;
+        &__input {
+            width: 100%;
 
-        &::after {
-            
+            &--required::after {
+                
+            }
         }
-    }
 
     &__select {
         display: flex;
