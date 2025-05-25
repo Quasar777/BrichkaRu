@@ -58,6 +58,7 @@ const Autos = () => {
         const priceTo = Number(query.get('priceTo')) || 0;
         const yearFrom = Number(query.get('yearFrom')) || 0;
         const yearTo = Number(query.get('yearTo')) || 0;
+        const novelty = query.get('novelty') || '';
 
         const parametersToSearch: DataToSearchProps = {
             selectedBrand: brand,
@@ -68,6 +69,7 @@ const Autos = () => {
             priceTo: priceTo,
             yearFrom: yearFrom,
             yearTo: yearTo,
+            novelty: novelty,
         }
 
         const filtered = carFakeData.filter(car => {
@@ -83,6 +85,7 @@ const Autos = () => {
             (!model || formattedModel === model) &&
             (!engine || formattedEngine === engine) &&
             (!gearbox || formattedGearbox === gearbox) &&
+            (!novelty || car.novelty === novelty) &&
             (!priceFrom || car.price >= priceFrom) &&
             (!priceTo || car.price <= priceTo) &&
             (!yearFrom || car.year >= yearFrom) &&

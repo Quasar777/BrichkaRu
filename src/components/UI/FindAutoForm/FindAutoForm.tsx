@@ -39,6 +39,7 @@ const FindAutoForm = () => {
         const priceTo = Number(query.get('priceTo')) || 0;
         const yearFrom = Number(query.get('yearFrom')) || 0;
         const yearTo = Number(query.get('yearTo')) || 0;
+        const novelty = query.get('novelty') || '';
 
         setSelectedBrand(brand);
         setSelectedModel(model);
@@ -48,6 +49,9 @@ const FindAutoForm = () => {
         setPriceTo(priceTo);
         setYearFrom(yearFrom);
         setYearTo(yearTo);
+        setCarNovelty(novelty);
+
+        console.log("установленная новизна: ", novelty)
 
         if (brand) {
             const modelsForBrand = Models[brand as keyof typeof Models] || [];
@@ -174,7 +178,6 @@ const FindAutoForm = () => {
                 <Radio.Group
                     className='filterForm__radioGroup'
                     block
-                    value={carNovelty}
                     onChange={e => setCarNovelty(e.target.value)}
                     size='large'
                     options={carNoveltyoptions}

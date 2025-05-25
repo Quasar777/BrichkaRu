@@ -7,4 +7,5 @@ export type DataToSearchProps = {
   priceTo: number;
   yearFrom: number;
   yearTo: number;
+  novelty: string;
 }
