@@ -1,0 +1,37 @@
+@use "../../../styles/helpers/" as *;
+
+
+.createAdForm {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(20);
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(10);
+        align-items: start;
+        max-width: rem(400);
+        
+        &-title {
+            margin-bottom: rem(5);
+            font-size: rem(18);
+            font-weight: 500;
+        }
+    }
+
+    &__input {
+        width: 100%;
+
+        &::after {
+            
+        }
+    }
+
+    &__select {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+

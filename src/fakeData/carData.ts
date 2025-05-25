@@ -129,3 +129,82 @@ export const dealersFakeData: Dealer[] = [
     adId: 2
   }
 ]
+
+export const Models = {
+  lada: [
+      "Priora",
+      "Vesta",
+      "Calina"
+  ],
+  porsche: [
+      "Cayene",
+      "Panamera"
+  ],
+  rangerover: [
+      "Land Rover",
+      "Sport"
+  ]
+}
+
+
+export const gearboxOptions = [
+  {
+      value: 'mechanical',
+      label: 'Механика',
+  },
+  {
+      value: 'automatic',
+      label: 'Автомат',
+  },
+  {
+      value: 'robot',
+      label: 'Роботизированная',
+  },
+  {
+      value: 'variator',
+      label: 'Вариатор',
+  },
+]
+
+
+export const brandOptions = [
+    {
+        value: 'lada',
+        label: 'Лада',
+    },
+    {
+        value: 'porsche',
+        label: 'Porsche',
+    },
+    {
+        value: 'rangerover',
+        label: 'Range rover',
+    },
+]
+
+export const carBodyOptions = [
+    {
+        value: 'coupe',
+        label: 'Купэ',
+    },
+    {
+        value: 'universal',
+        label: 'Универсал',
+    },
+    {
+        value: 'cabrio',
+        label: 'Кабриолет',
+    },
+    {
+        value: 'sedan',
+        label: 'Седан',
+    },
+    {
+        value: 'hatchback',
+        label: 'Хэтчбек',
+    },
+    {
+        value: 'suv',
+        label: 'Внедорожник',
+    },
+]

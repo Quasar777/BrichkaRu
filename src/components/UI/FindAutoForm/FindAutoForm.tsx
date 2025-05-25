@@ -3,28 +3,13 @@ import "./FindAutoForm.scss"
 import { Select, Button, ConfigProvider, Radio, InputNumber, InputNumberProps } from 'antd';
 import type { CheckboxGroupProps } from 'antd/es/checkbox';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Models } from '../../../fakeData/carData';
 
 const options: CheckboxGroupProps<string>['options'] = [
   { label: 'Все', value: 'allCars' },
   { label: 'Новые', value: 'newCars' },
   { label: 'Б/У', value: 'usedCars' },
 ];
-
-let Models = {
-        lada: [
-            "Priora",
-            "Vesta",
-            "Calina"
-        ],
-        porsche: [
-            "Cayene",
-            "Panamera"
-        ],
-        rangerover: [
-            "Land Rover",
-            "Sport"
-        ]
-    }
 
 const FindAutoForm = () => {
     const [selectedBrand, setSelectedBrand] = useState("")
