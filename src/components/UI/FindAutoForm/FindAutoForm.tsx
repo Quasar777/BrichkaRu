@@ -5,7 +5,7 @@ import type { CheckboxGroupProps } from 'antd/es/checkbox';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Models } from '../../../fakeData/carData';
 
-const options: CheckboxGroupProps<string>['options'] = [
+const carNoveltyoptions: CheckboxGroupProps<string>['options'] = [
   { label: 'Все', value: 'allCars' },
   { label: 'Новые', value: 'newCars' },
   { label: 'Б/У', value: 'usedCars' },
@@ -16,6 +16,7 @@ const FindAutoForm = () => {
     const [selectedModel, setSelectedModel] = useState("")
     const [selectedEngine, setSelectedEngine] = useState("")
     const [selectedGearBox, setSelectedGearBox] = useState("")
+    const [carNovelty, setCarNovelty] = useState("allCars")
     const [priceFrom, setPriceFrom] = useState(0);
     const [priceTo, setPriceTo] = useState(0);
     const [yearFrom, setYearFrom] = useState(0);
@@ -74,20 +75,16 @@ const FindAutoForm = () => {
     };
     const onSelectedModelChange = (value: string) => {
         setSelectedModel(value);
-        console.log("Модель: " + value);
     };
     const onSelectedGearBoxChange = (value: string) => {
         setSelectedGearBox(value);
-        console.log("КПП: " + value);
     };
     const onSelectedEngineTypeChange = (value: string) => {
         setSelectedEngine(value);
-        console.log("Тип двигателя: " + value);
     };
     const onPriceFromChange: InputNumberProps['onChange'] = (value) => {
     if (typeof value === 'number') {
         setPriceFrom(value);
-        console.log("Цена от: " + value);
     } else {
         console.log("Неверное значение начальной цены: ", value);
     }
@@ -95,7 +92,6 @@ const FindAutoForm = () => {
     const onPriceToChange: InputNumberProps['onChange'] = (value) => {
     if (typeof value === 'number') {
         setPriceTo(value);
-        console.log("Цена до: " + value);
     } else {
         console.log("Неверное значение верхней цены: ", value);
     }
@@ -103,7 +99,6 @@ const FindAutoForm = () => {
     const onYearFromChange: InputNumberProps['onChange'] = (value) => {
     if (typeof value === 'number' && value > 0) {
         setYearFrom(value);
-        console.log("Год от: " + value);
     } else {
         console.log("Неверное значение начального года: ", value);
     }
@@ -111,7 +106,6 @@ const FindAutoForm = () => {
     const onYearToChange: InputNumberProps['onChange'] = (value) => {
     if (typeof value === 'number' && value > 0) {
         setYearTo(value);
-        console.log("Год до: " + value);
     } else {
         console.log("Неверное значение верхнего года: ", value);
     }
@@ -127,6 +121,7 @@ const FindAutoForm = () => {
             priceTo: priceTo.toString(),
             yearFrom: yearFrom.toString(),
             yearTo: yearTo.toString(),
+            novelty: carNovelty.toString().toLowerCase(),
         });
 
         navigate(`/autos?${params.toString()}`);
@@ -158,13 +153,12 @@ const FindAutoForm = () => {
                     buttonBg: "#000",
                     buttonColor: "#fff",
                     borderRadius: 5,
+                    colorBorder: "#000",
                     buttonCheckedBg: "#000",
-                    buttonSolidCheckedColor: "#FF8C00", // цвет текста активной кнопки
-                    buttonSolidCheckedBg: "#000", // фон активной кнопки
-                    buttonSolidCheckedHoverBg: "#000", // фон при наведении на активную
-                    colorPrimary: "#FF8C00", // общий цвет темы
-                    colorPrimaryHover: "#FF8C00", // цвет при ховере
-                    colorPrimaryActive: "#FF8C00", // цвет при нажатии
+                    buttonSolidCheckedColor: "#FF8C00", 
+                    buttonSolidCheckedBg: "#000", 
+                    buttonSolidCheckedHoverBg: "#000", 
+                                        
                 },
                 Button: {
                     paddingInline: 80,
@@ -177,19 +171,17 @@ const FindAutoForm = () => {
         >
         <form className='filterForm'>
             <div className="filterForm__tabs">
-                {/* ПОКА НЕ РАБОТАЕТ */}
                 <Radio.Group
                     className='filterForm__radioGroup'
                     block
-                    disabled
-                    name='carNovelty'
+                    value={carNovelty}
+                    onChange={e => setCarNovelty(e.target.value)}
                     size='large'
-                    options={options}
+                    options={carNoveltyoptions}
                     defaultValue="allCars"
                     optionType="button"
                     buttonStyle="solid"
                 />
-                <p style={{color: "red", fontSize: 10, alignContent: 'center', marginLeft: 10}}>Пока не работает</p>
             </div>
 
             <div className="filterForm__fields">

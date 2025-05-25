@@ -15,6 +15,7 @@ export type Car = {
   steeringWheelPosition: string;
   mileAge: number;
   engineVolume: number;
+  novelty: string
 };
 
 

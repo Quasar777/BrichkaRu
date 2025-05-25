@@ -19,12 +19,13 @@ export const carFakeData: Car[] = [
     steeringWheelPosition: "left",
     mileAge: 2300,
     engineVolume: 8,
+    novelty: "newcars"
   },
   {
     id: 2,
     brand: "Lada",
-    model: "Calina",
-    code: "calina",
+    model: "Kalina",
+    code: "kalina",
     locationCity: "Москва",
     locaionDistrict: "люблино",
     pathToImage: "https://s0.rbk.ru/v6_top_pics/media/img/3/47/754788599938473.jpeg",
@@ -37,7 +38,7 @@ export const carFakeData: Car[] = [
     steeringWheelPosition: "left",
     mileAge: 150000,
     engineVolume: 1.7,
-
+    novelty: "usedcars"
   },
   {
     id: 3,
@@ -56,6 +57,7 @@ export const carFakeData: Car[] = [
     steeringWheelPosition: "left",
     mileAge: 95000,
     engineVolume: 3,
+    novelty: "newcars"
   },
   {
     id: 4,
@@ -74,6 +76,7 @@ export const carFakeData: Car[] = [
     steeringWheelPosition: "left",
     mileAge: 250000,
     engineVolume: 3,
+    novelty: "newcars"
   },
   {
     id: 5,
@@ -92,6 +95,7 @@ export const carFakeData: Car[] = [
     steeringWheelPosition: "left",
     mileAge: 6000,
     engineVolume: 3,
+    novelty: "newcars"
   },
   {
     id: 6,
@@ -110,6 +114,7 @@ export const carFakeData: Car[] = [
     steeringWheelPosition: "left",
     mileAge: 83000,
     engineVolume: 3,
+    novelty: "newcars"
   }
 ]
 
@@ -134,7 +139,7 @@ export const Models = {
   lada: [
       "Priora",
       "Vesta",
-      "Calina"
+      "Kalina"
   ],
   porsche: [
       "Cayene",
@@ -145,7 +150,6 @@ export const Models = {
       "Sport"
   ]
 }
-
 
 export const gearboxOptions = [
   {
@@ -165,7 +169,6 @@ export const gearboxOptions = [
       label: 'Вариатор',
   },
 ]
-
 
 export const brandOptions = [
     {
