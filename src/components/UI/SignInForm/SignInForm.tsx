@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ConfigProvider, Form, Input } from 'antd';
 import { Button, Flex } from 'antd';
 import "./SignInForm.scss"
+import { AuthContext } from '../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const SignInForm = () => {
+    
+    const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
+    
+    if (!authContext) {
+        return <p>Ошибка!</p>;
+    }
+
+    const {isAuth, setIsAuth} = authContext;
+
+    const setFakeAccount = () => {
+        if (!isAuth) {
+            setIsAuth(true);
+            navigate("/profile")
+        }
+         
+    }
+
     return (
         <div>
             <ConfigProvider
@@ -57,6 +77,7 @@ const SignInForm = () => {
                             <Button 
                                 type="primary" 
                                 htmlType="submit" 
+                                onClick={setFakeAccount}
                                 color='default' 
                                 variant='solid' 
                                 style={{ height: 50, fontSize: 16, marginTop: 20, width: "100%" }}

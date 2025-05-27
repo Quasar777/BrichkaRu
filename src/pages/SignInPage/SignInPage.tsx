@@ -15,6 +15,9 @@ const SignInPage = () => {
                 <Link to={"/signup"}>
                     Страница регистрации
                 </Link>
+                <Link to={"/profile"}>
+                    Тестовый аккаунт
+                </Link>
             </main>
         </div>
     );
