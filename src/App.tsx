@@ -8,6 +8,8 @@ import AdPage from './pages/AdPage/AdPage';
 import Footer from './components/Footer/Footer'
 import CreateAdForm from './components/UI/CreateAdForm/CreateAdForm';
 import CreateAdPage from './pages/CreateAdPage/CreateAdPage';
+import SignUpForm from './components/UI/SignUpForm/SignUpForm';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path='autos/:id' element={ <AdPage /> } />
         <Route path='trucks' element={ <Trucks /> } />
         <Route path='createAd' element={ <CreateAdPage /> }/>
+        <Route path='signup' element={<SignUpPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

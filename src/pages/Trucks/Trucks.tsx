@@ -1,9 +1,13 @@
 import React from 'react';
+import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
+import "./Trucks.scss";
 
 const Trucks = () => {
     return (
         <div>
-            <p>Здесь будет страница с грузовиками</p>
+            <main className='main'>
+                <ErrorCard errorMessage='Данная страница находится в разработке' />
+            </main>
         </div>
     );
 }

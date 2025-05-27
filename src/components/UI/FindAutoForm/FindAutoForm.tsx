@@ -135,6 +135,10 @@ const FindAutoForm = () => {
     return (
           <ConfigProvider
             theme={{
+
+                token: {
+                    colorPrimary: "#000"
+                },
             
             components: {
                 Select: {
@@ -162,7 +166,7 @@ const FindAutoForm = () => {
                     buttonSolidCheckedColor: "#FF8C00", 
                     buttonSolidCheckedBg: "#000", 
                     buttonSolidCheckedHoverBg: "#000", 
-                                        
+                    buttonSolidCheckedActiveBg: "#000"     
                 },
                 Button: {
                     paddingInline: 80,

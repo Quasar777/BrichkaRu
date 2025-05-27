@@ -256,8 +256,8 @@ const CreateAdForm = () => {
                 />
                 <Radio.Group 
                     block 
-                    value={steeringWheelPosition}
                     options={SteeringWheeloptions} 
+                    onChange={e => setSteeringWheelPosition(e.target.value)}
                     defaultValue="left" 
                     optionType="button"
                     buttonStyle="solid"
@@ -319,6 +319,7 @@ const CreateAdForm = () => {
             <Button className='createAdForm__submitButton' onClick={onSubmitButtonClick} color="default" variant="solid">
                 Опубликовать
             </Button>
+
         </form>
     );
 }

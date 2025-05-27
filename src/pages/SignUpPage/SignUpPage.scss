@@ -1,0 +1,8 @@
+@use '../../styles/helpers/' as *;
+
+.signUpSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: rem(25);
+}

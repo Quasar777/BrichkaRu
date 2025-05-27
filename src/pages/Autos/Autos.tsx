@@ -6,8 +6,6 @@ import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import { useLocation } from 'react-router-dom';
 import { DataToSearchProps } from '../../types/DataToSearchProps';
 import { carFakeData } from '../../fakeData/carData';
-import { dealersFakeData } from '../../fakeData/carData';
-import { Car } from '../../types/Car';
 import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
 
 const Autos = () => {
@@ -58,7 +56,7 @@ const Autos = () => {
         const priceTo = Number(query.get('priceTo')) || 0;
         const yearFrom = Number(query.get('yearFrom')) || 0;
         const yearTo = Number(query.get('yearTo')) || 0;
-        const novelty = query.get('novelty') || '';
+        let novelty = query.get('novelty') || '';
 
         const parametersToSearch: DataToSearchProps = {
             selectedBrand: brand,
@@ -77,8 +75,10 @@ const Autos = () => {
             const formattedModel = car.model.replaceAll(" ", "").toLocaleLowerCase();
             const formattedEngine = getNormalEngineType(car.engineType.replaceAll(" ", ""));
             const formattedGearbox = getNormalGearboxType(car.gearBoxType.replaceAll(" ", "").toLocaleLowerCase());
-            
-            console.log(formattedGearbox, "VS", gearbox)
+            if (novelty === "allcars")  {
+                novelty = "";
+            }
+                
 
             return (
             (!brand || formattedBrand === brand) &&
@@ -94,8 +94,6 @@ const Autos = () => {
         });
 
         setFilteredAutoIDs(filtered.map(car => car.id))
-        console.log("filtered!")
-        console.log(filteredAutoIDs);
         
     }, [useLocation().search]);
 

@@ -25,7 +25,9 @@ const Header = () => {
                     <Link to="/createAd">
                         <MyButton accented title='Разместить объявление'/>
                     </Link>
-                    <MyButton title='Регистрация/вход'/>
+                    <Link to="/signUp">
+                        <MyButton title='Регистрация/вход'/>
+                    </Link>
                 </div>
             </nav>
         </div>
