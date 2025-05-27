@@ -63,9 +63,20 @@ main {
     &__like {
         display: flex;
         align-items: center;
-        color: #FF8B8B;
         gap: rem(5);
         cursor: pointer;
+
+        &-title {
+            &--liked {
+                color: #FF8B8B;
+            }
+        }
+
+        .likeIcon {
+            color: #FF8B8B;
+            fill: #FF8B8B;
+        }
+        
     }
 
     &__item {

@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import "./ProfilePage.scss"
 import MyAdAutoCard from '../../components/UI/MyAdAutoCard/MyAdAutoCard';
 import AutoCard from '../../components/UI/AutoCard/AutoCard';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { Spin } from 'antd';
+import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
 
 const ProfilePage = () => {
+    const authContext = useContext(AuthContext);
+    const navigate = useNavigate()
+    
+    useEffect(() => {
+        if (authContext && !authContext.isAuth) {
+            setTimeout(() => {
+                navigate('/signin');    
+            }, 500)
+        }
+    }, [authContext, navigate]);
+
+    if (!authContext) {
+        return <ErrorCard errorMessage='Неизвестная ошибка' />;
+    }
+
+    if (!authContext.isAuth) {
+        return <ErrorCard errorMessage='Вы не авторизованы!' />;
+    }
+
+    const {username} = authContext;
+
     return (
         <div>
             <main className="main">
@@ -18,7 +43,7 @@ const ProfilePage = () => {
                                 </svg>
                             </div>
                             <div className="contact__info">
-                                <p className="contact__login">sarmat</p>
+                                <p className="contact__login">{username}</p>
                                 <p className="contact__status">Создатель</p>
                             </div>
                         </div>

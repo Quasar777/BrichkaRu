@@ -14,6 +14,9 @@ const AdPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const [complainModalopen, setcomplainModalOpen] = useState(false);
     const [complainMessage, setComplainMessage] = useState("");
+    const [liked, setLiked] = useState(false);
+
+    // сделать лайк только авторизованному
 
     const showComplainModal = () => {
         setcomplainModalOpen(true);
@@ -51,6 +54,18 @@ const AdPage = () => {
 
         navigator.clipboard.writeText(phoneNumber.toString());
         success();
+    }
+
+    const updateLike = () => {
+
+
+        if (!liked) 
+        {
+            setLiked(true);
+        }
+        else {
+            setLiked(false);
+        }
     }
 
     const { id } = useParams();
@@ -93,14 +108,23 @@ const AdPage = () => {
                         </div>
                         <div className="carInfo__rightSide">
                             <div className="carInfo__like">
-                                <p className='carInfo__like-title'>В избранное</p>
-                                <img 
-                                    className='carInfo__like-icon'
-                                    src="/heart-active.svg" 
-                                    alt="добавить в избранное" 
-                                    width={40}
-                                    height={40}
-                                />
+                                {
+                                    liked 
+                                    ?  <p onClick={updateLike} className='carInfo__like-title carInfo__like-title--liked'>Добавлено в</p>
+                                    : <p onClick={updateLike} className='carInfo__like-title'>Добавить в </p>
+                                }
+                                
+                                {
+                                    liked 
+                                    ? <svg className='likeIcon' width="40px" height="40px" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M44.887 14.5538C48.4958 18.1626 48.6341 23.9697 45.2009 27.7459L27.9988 46.6669L10.7989 27.7459C7.36584 23.9697 7.50412 18.1625 11.1129 14.5536C15.1424 10.5242 21.7787 10.8924 25.3386 15.3422L28 18.6678L30.6591 15.3418C34.219 10.892 40.8576 10.5243 44.887 14.5538Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    : <svg width="40px" height="40px" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M44.887 14.5538C48.4958 18.1626 48.6341 23.9697 45.2009 27.7459L27.9988 46.6669L10.7989 27.7459C7.36584 23.9697 7.50412 18.1625 11.1129 14.5536C15.1424 10.5242 21.7787 10.8924 25.3386 15.3422L28 18.6678L30.6591 15.3418C34.219 10.892 40.8576 10.5243 44.887 14.5538Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                }
+                                
+                                
                             </div>
                             <div className="carInfo__author">
                                 <div className="carInfo__author-box">
