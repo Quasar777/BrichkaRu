@@ -1,6 +1,7 @@
 import React from 'react';
 import { ConfigProvider, Form, Input } from 'antd';
 import { Button, Flex } from 'antd';
+import "./SignInForm.scss"
 
 const SignInForm = () => {
     return (
@@ -25,9 +26,9 @@ const SignInForm = () => {
                 },
             }}
         >
-            <div className='signUp'>
+            <div className='signIn'>
                 <Form 
-                    className='signUpForm'
+                    className='signInForm'
                     layout='vertical'
                     autoComplete="off"
                 >
@@ -65,8 +66,8 @@ const SignInForm = () => {
                         </Flex>
                     </Form.Item>
                 </Form>
-                <div className="signUpWarning">
-                    <p className='signUpWarning__title'>
+                <div className="signInWarning">
+                    <p className='signInWarning__title'>
                         При входе вы принимаете <a href='/' className='signUpWarning__title--underlined'>условия использования</a> сайта и соглашаетесь на обработку 
                         персональных данных согласно <a href='/' className='signUpWarning__title--underlined'>политике конфиденциальности.</a>
                     </p>
