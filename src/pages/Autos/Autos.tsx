@@ -131,6 +131,7 @@ const Autos = () => {
                 }
             </ul>
             <Pagination
+                align='center'
                 current={currentPage}
                 pageSize={itemsPerPage}
                 total={filteredAutoIDs.length}
