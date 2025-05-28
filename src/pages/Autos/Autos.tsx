@@ -7,9 +7,22 @@ import { useLocation } from 'react-router-dom';
 import { DataToSearchProps } from '../../types/DataToSearchProps';
 import { carFakeData } from '../../fakeData/carData';
 import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
+import { Pagination } from 'antd';
 
 const Autos = () => {
     let [filteredAutoIDs, setFilteredAutoIDs] = useState<number[]>([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+
+    const currentPageIDs = filteredAutoIDs.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const useQuery = () => {
         return new URLSearchParams(useLocation().search);
@@ -93,8 +106,8 @@ const Autos = () => {
             );
         });
 
-        setFilteredAutoIDs(filtered.map(car => car.id))
-        
+        setFilteredAutoIDs(filtered.map(car => car.id));
+        setCurrentPage(1); 
     }, [useLocation().search]);
 
     return (
@@ -107,9 +120,9 @@ const Autos = () => {
 
             <ul className="autosList">
                 { 
-                    filteredAutoIDs.map((carId) => (
+                    currentPageIDs.map((carId) => (
                         <li key={carId} className='autosList__item'>
-                             <AutoCard carId={carId} />
+                        <AutoCard carId={carId} />
                         </li>
                     ))
                 }
@@ -117,6 +130,13 @@ const Autos = () => {
                     filteredAutoIDs.length == 0 && <ErrorCard errorMessage='По вашему запросу ничего не найдено!'/>
                 }
             </ul>
+            <Pagination
+                current={currentPage}
+                pageSize={itemsPerPage}
+                total={filteredAutoIDs.length}
+                onChange={handlePageChange}
+                style={{ textAlign: 'center', marginTop: 20 }}
+            />
             
         </main>
     );
