@@ -23,6 +23,9 @@ const AdPage = () => {
     };
 
     const showSuccessComplained = () => {
+        if (complainMessage.trim() == "") {
+            return;   
+        }
         messageApi.open({
             type: 'success',
             content: 'Жалоба успешно отправлена!',

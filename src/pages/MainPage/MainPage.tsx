@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import MainAutoCard from '../../components/UI/MainAutoCard/MainAutoCard';
 import FindAutoForm from '../../components/UI/FindAutoForm/FindAutoForm';
 import "./MainContent.scss";
@@ -11,6 +11,35 @@ import { carFakeData } from '../../fakeData/carData';
 const carouselStyle: React.CSSProperties = {
   paddingBottom: 20,
 };
+
+const maxItems = 30;
+const itemsPerSlide = 3;
+
+const slicedCars = carFakeData.slice(0, maxItems); // берём максимум 30 объявлений
+const slides: JSX.Element[] = [];
+
+for (let i = 0; i < slicedCars.length; i += itemsPerSlide) {
+  const slideItems = slicedCars.slice(i, i + itemsPerSlide);
+
+  slides.push(
+    <div key={`slide-${i / itemsPerSlide}`}>
+      <ul style={carouselStyle} className="mainPageCarsList">
+        {slideItems.map((carInfo) => (
+          <li key={carInfo.id} className="mainPageCarsList__item">
+            <MainAutoCard
+              carId={carInfo.id}
+              pathToImage={carInfo.pathToImage}
+              price={carInfo.price}
+              title={`${carInfo.brand} ${carInfo.model}`}
+              location={carInfo.locationCity}
+              year={carInfo.year}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 const MainPage = () => {
     return (
@@ -37,79 +66,13 @@ const MainPage = () => {
                 <PageTitle pageName={"Главная"} withLocation/>
 
                 <Carousel fade arrows autoplay autoplaySpeed={5000}>
-                     <div>
-                        <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carFakeData.slice(0, 3).map(carInfo => (
-                                    <li className='mainPageCarsList__item'>
-                                        <MainAutoCard
-                                            carId={carInfo.id} 
-                                            key={carInfo.id}
-                                            pathToImage={carInfo.pathToImage}
-                                            price={carInfo.price} 
-                                            title={`${carInfo.brand} ${carInfo.model}`}
-                                            location={carInfo.locationCity}
-                                            year={carInfo.year}
-                                        />
-                                    </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carFakeData.slice(3).map(carInfo => (
-                                    <li className='mainPageCarsList__item'>
-                                        <MainAutoCard 
-                                            carId={carInfo.id} 
-                                            key={carInfo.id}
-                                            pathToImage={carInfo.pathToImage}
-                                            price={carInfo.price} 
-                                            title={`${carInfo.brand} ${carInfo.model}`}
-                                            location={carInfo.locationCity}
-                                            year={carInfo.year}
-                                        />
-                                    </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {slides}
                 </Carousel>
                 
                 <FindAutoForm />
 
                 <Carousel fade arrows autoplay autoplaySpeed={5000}>
-                    <div>
-                        <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carFakeData.slice(0, 3).map(carInfo => (
-                                    <li className='mainPageCarsList__item'>
-                                        <MainAutoCard
-                                            carId={carInfo.id} 
-                                            key={carInfo.id}
-                                            pathToImage={carInfo.pathToImage}
-                                            price={carInfo.price} 
-                                            title={`${carInfo.brand} ${carInfo.model}`}
-                                            location={carInfo.locationCity}
-                                            year={carInfo.year}
-                                        />
-                                    </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <ul style={carouselStyle} className='mainPageCarsList'>
-                            {carFakeData.slice(3).map(carInfo => (
-                                    <li className='mainPageCarsList__item'>
-                                        <MainAutoCard 
-                                            carId={carInfo.id} 
-                                            key={carInfo.id}
-                                            pathToImage={carInfo.pathToImage}
-                                            price={carInfo.price} 
-                                            title={`${carInfo.brand} ${carInfo.model}`}
-                                            location={carInfo.locationCity}
-                                            year={carInfo.year}
-                                        />
-                                    </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {slides}
                 </Carousel>
             </main>
             </ConfigProvider>
