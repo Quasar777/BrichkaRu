@@ -1,4 +1,4 @@
-import React, { JSX } from 'react';
+import React, { JSX, useEffect, useState } from 'react';
 import MainAutoCard from '../../components/UI/MainAutoCard/MainAutoCard';
 import FindAutoForm from '../../components/UI/FindAutoForm/FindAutoForm';
 import "./MainContent.scss";
@@ -6,42 +6,55 @@ import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import { title } from 'process';
 import { Carousel, ConfigProvider } from 'antd';
 import { carFakeData } from '../../fakeData/carData';
-
+import axios from 'axios';
+import { Car } from '../../types/Car';
 
 const carouselStyle: React.CSSProperties = {
   paddingBottom: 20,
 };
 
-const maxItems = 30;
-const itemsPerSlide = 3;
-
-const slicedCars = carFakeData.slice(0, maxItems); // берём максимум 30 объявлений
-const slides: JSX.Element[] = [];
-
-for (let i = 0; i < slicedCars.length; i += itemsPerSlide) {
-  const slideItems = slicedCars.slice(i, i + itemsPerSlide);
-
-  slides.push(
-    <div key={`slide-${i / itemsPerSlide}`}>
-      <ul style={carouselStyle} className="mainPageCarsList">
-        {slideItems.map((carInfo) => (
-          <li key={carInfo.id} className="mainPageCarsList__item">
-            <MainAutoCard
-              carId={carInfo.id}
-              pathToImage={carInfo.pathToImage}
-              price={carInfo.price}
-              title={`${carInfo.brand} ${carInfo.model}`}
-              location={carInfo.locationCity}
-              year={carInfo.year}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 const MainPage = () => {
+
+    const maxItems = 30;
+    const itemsPerSlide = 3;
+
+    const [backendCars, setBackendCars] = useState<Car[]>([]);
+
+    useEffect(() => {
+        axios.get<Car[]>('http://localhost:5072/api/cars')
+        .then(res => setBackendCars(res.data))
+        .catch(err => console.error("Ошибка при получении данных:", err));
+    }, []);
+
+    const buildSlides = (cars: Car[]) => {
+        const slides = [];
+
+        for (let i = 0; i < cars.length && i < maxItems; i += itemsPerSlide) {
+            const slideItems = cars.slice(i, i + itemsPerSlide);
+
+            slides.push(
+                <div key={`slide-${i}`}>
+                <ul style={carouselStyle} className="mainPageCarsList">
+                    {slideItems.map((car) => (
+                    <li key={car.id} className="mainPageCarsList__item">
+                        <MainAutoCard
+                        carId={car.id}
+                        pathToImage={car.pathToImage}
+                        price={car.price}
+                        title={`${car.brand} ${car.model}`}
+                        location={car.locationCity}
+                        year={car.year}
+                        />
+                    </li>
+                    ))}
+                </ul>
+                </div>
+            );
+        }
+
+        return slides;
+    };
+
     return (
         <div>
             <ConfigProvider
@@ -66,13 +79,13 @@ const MainPage = () => {
                 <PageTitle pageName={"Главная"} withLocation/>
 
                 <Carousel fade arrows autoplay autoplaySpeed={5000}>
-                    {slides}
+                    {buildSlides(carFakeData)}
                 </Carousel>
                 
                 <FindAutoForm />
 
                 <Carousel fade arrows autoplay autoplaySpeed={5000}>
-                    {slides}
+                    {buildSlides(backendCars)}
                 </Carousel>
             </main>
             </ConfigProvider>
