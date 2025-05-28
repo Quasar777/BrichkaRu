@@ -4,10 +4,11 @@ import FindAutoForm from '../../components/UI/FindAutoForm/FindAutoForm';
 import "./MainContent.scss";
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import { title } from 'process';
-import { Carousel, ConfigProvider } from 'antd';
+import { Carousel, ConfigProvider, Slider } from 'antd';
 import { carFakeData } from '../../fakeData/carData';
 import axios from 'axios';
 import { Car } from '../../types/Car';
+import WarningCard from '../../components/UI/WarningCard/WarningCard';
 
 const carouselStyle: React.CSSProperties = {
   paddingBottom: 20,
@@ -15,15 +16,24 @@ const carouselStyle: React.CSSProperties = {
 
 const MainPage = () => {
 
+    const [loading, setLoading] = useState(false);
+
     const maxItems = 30;
     const itemsPerSlide = 3;
-
     const [backendCars, setBackendCars] = useState<Car[]>([]);
 
     useEffect(() => {
+        setLoading(true)
         axios.get<Car[]>('http://localhost:5072/api/cars')
-        .then(res => setBackendCars(res.data))
-        .catch(err => console.error("Ошибка при получении данных:", err));
+        .then(res => {
+            setBackendCars(res.data);
+        })
+        .catch(err => {
+            console.error("Ошибка при получении данных:", err)
+        })
+        .finally(() => {
+            setLoading(false);
+        })
     }, []);
 
     const buildSlides = (cars: Car[]) => {
@@ -83,10 +93,14 @@ const MainPage = () => {
                 </Carousel>
                 
                 <FindAutoForm />
-
-                <Carousel fade arrows autoplay autoplaySpeed={5000}>
-                    {buildSlides(backendCars)}
-                </Carousel>
+                {
+                    loading 
+                    ? <WarningCard message='Загрузка...' />
+                    :<Carousel fade arrows autoplay autoplaySpeed={5000}>
+                        {buildSlides(backendCars)}
+                    </Carousel>
+                }
+                
             </main>
             </ConfigProvider>
         </div>
