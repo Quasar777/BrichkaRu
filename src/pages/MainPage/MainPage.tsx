@@ -94,7 +94,7 @@ const MainPage = () => {
                 
                 <FindAutoForm />
                 {
-                    loading 
+                    loading || backendCars.length == 0 
                     ? <WarningCard message='Загрузка...' />
                     :<Carousel fade arrows autoplay autoplaySpeed={5000}>
                         {buildSlides(backendCars)}
