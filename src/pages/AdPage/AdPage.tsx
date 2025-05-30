@@ -5,9 +5,10 @@ import MyButton from '../../components/UI/Button/MyButton';
 import { Button, Card, message, Modal } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useParams } from 'react-router-dom';
-import { carFakeData, dealersFakeData } from '../../fakeData/carData';
+import { carFakeData } from '../../fakeData/carData';
 import { AdInfoData } from '../../fakeData/adFakeData';
 import { userData } from '../../fakeData/userFakedata';
+import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
 
 
 
@@ -73,15 +74,20 @@ const AdPage = () => {
         }
     }
 
-    const { id } = useParams();
-    const numericId = Number(id);
-    const car = carFakeData.find(car => car.id === numericId);
-    if (!car) {
-        return <div>Такого автомобиля нет!</div>
+    const { id } = useParams(); // вытаскиваю ID объявления
+    const numericId = Number(id); // конвертирую его в числовой вид
+
+    const ad = AdInfoData.find(ad => ad.id === numericId); // ищу его в массиве
+    if (!ad) {
+        return <ErrorCard errorMessage='Мы не нашли объявление по вашему запросу'/>;
     }
 
-    const dealer = dealersFakeData.find(d => d.adId === car.id)
-    
+    const dealer = userData.find(user => user.id === ad.dealerId)
+    const car = carFakeData.find(car => car.id === ad.carId)
+    if (!car || !dealer) {
+        return <ErrorCard errorMessage='Ошибка при загрузке объявления'/>;
+    }
+
     return (
         <div>
             <main className="main">
@@ -167,14 +173,7 @@ const AdPage = () => {
                         <h3 className='carInfo__descr-title'>Описание</h3>
                         <Card style={{ width: 660 }}>
                             <p>
-                                Новый, не битый не крашеный. Коробка чуть стучит, а так понторезка хорошая.
-                                <br/>
-                                ***
-                                <br/>
-                                Обмен не рассматириваю (ТОЛЬКО НА ПРИОРУ!!!)<br/> 
-                                ***
-                                <br/>
-                                Звоните, пишите! 
+                                {ad.description}
                             </p>
                         </Card>
                     </div>

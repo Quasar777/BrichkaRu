@@ -17,6 +17,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { AuthContext } from "./context/AuthContext";
 import { useState } from "react";
 
+
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [username, setUsername] = useState("Sarmat");
