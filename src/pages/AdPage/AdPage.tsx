@@ -6,6 +6,8 @@ import { Button, Card, message, Modal } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useParams } from 'react-router-dom';
 import { carFakeData, dealersFakeData } from '../../fakeData/carData';
+import { AdInfoData } from '../../fakeData/adFakeData';
+import { userData } from '../../fakeData/userFakedata';
 
 
 
@@ -204,7 +206,6 @@ const AdPage = () => {
                         modalRender={(modal) => (
                             <div style={{ overflow: 'hidden' }}>{modal}</div>
                         )}
-                        // можно попробовать также
                         getContainer={false} 
                     >
                         <TextArea 

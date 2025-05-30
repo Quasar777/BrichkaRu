@@ -88,7 +88,7 @@ const MainPage = () => {
                
                 <PageTitle pageName={"Главная"} withLocation/>
 
-                <Carousel fade arrows autoplay autoplaySpeed={5000}>
+                <Carousel fade arrows autoplay autoplaySpeed={10000}>
                     {buildSlides(carFakeData)}
                 </Carousel>
                 
@@ -96,7 +96,7 @@ const MainPage = () => {
                 {
                     loading || backendCars.length == 0 
                     ? <WarningCard message='Загрузка...' />
-                    :<Carousel fade arrows autoplay autoplaySpeed={5000}>
+                    :<Carousel fade arrows autoplay autoplaySpeed={10000}>
                         {buildSlides(backendCars)}
                     </Carousel>
                 }
