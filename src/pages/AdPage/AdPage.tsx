@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import "./AdPage.scss"
 import MyButton from '../../components/UI/Button/MyButton';
@@ -9,6 +9,12 @@ import { carFakeData } from '../../fakeData/carData';
 import { AdInfoData } from '../../fakeData/adFakeData';
 import { userData } from '../../fakeData/userFakedata';
 import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
+import { Car } from '../../types/Car';
+import { User } from '../../types/User';
+import axios from 'axios';
+import { AdInfo } from '../../types/AdInfo';
+import { Ad } from '../../types/Ad';
+import WarningCard from '../../components/UI/WarningCard/WarningCard';
 
 
 
@@ -18,6 +24,11 @@ const AdPage = () => {
     const [complainModalopen, setcomplainModalOpen] = useState(false);
     const [complainMessage, setComplainMessage] = useState("");
     const [liked, setLiked] = useState(false);
+
+    const [loading, setLoading] = useState(false);
+    const [carData, setCarData] = useState<Car | null>(null);
+    const [authorData, setAuthorData] = useState<User | null>(null);
+    const [currentAd, setCurrentAd] = useState<Ad | null>(null);
 
     // сделать лайк только авторизованному
 
@@ -77,15 +88,37 @@ const AdPage = () => {
     const { id } = useParams(); // вытаскиваю ID объявления
     const numericId = Number(id); // конвертирую его в числовой вид
 
-    const ad = AdInfoData.find(ad => ad.id === numericId); // ищу его в массиве
-    if (!ad) {
-        return <ErrorCard errorMessage='Мы не нашли объявление по вашему запросу'/>;
-    }
+    useEffect(() => {
+        setLoading(true)
+        const fetchAd = async () => {
+            try {
+                const res = await axios.get<Ad>(`http://localhost:5072/api/ads/${numericId}`);
+                setCurrentAd(res.data);
+                setCarData(res.data.car);
+                setAuthorData(res.data.user);
+            }
+            catch (e) {
+                console.log("ошибка при загрузке данных объявления. ")
+            }
+            finally {
+                setLoading(false);
+            }
+        }
 
-    const dealer = userData.find(user => user.id === ad.dealerId)
-    const car = carFakeData.find(car => car.id === ad.carId)
-    if (!car || !dealer) {
-        return <ErrorCard errorMessage='Ошибка при загрузке объявления'/>;
+        fetchAd();
+    }, [numericId])
+
+    
+    const ad = currentAd;
+
+    if (!ad) {
+        return <ErrorCard errorMessage='Объявление не найдено!'/>
+    }
+    const car = carData;
+    const dealer = authorData;
+
+    if (loading || !car || !dealer) {
+        return <WarningCard message='Загрузка объявления...'/>
     }
 
     return (
