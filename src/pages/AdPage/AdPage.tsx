@@ -112,7 +112,7 @@ const AdPage = () => {
     const ad = currentAd;
 
     if (!ad) {
-        return <ErrorCard errorMessage='Объявление не найдено!'/>
+        return <WarningCard message='Загрузка объявления...'/>
     }
     const car = carData;
     const dealer = authorData;
