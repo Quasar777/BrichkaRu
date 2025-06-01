@@ -17,11 +17,34 @@ const carouselStyle: React.CSSProperties = {
 const MainPage = () => {
 
     const [loading, setLoading] = useState(false);
-
-    const maxItems = 30;
-    const itemsPerSlide = 3;
+    const [itemsPerSlide, setItemsPerSlide] = useState(3);
     const [backendCars, setBackendCars] = useState<Car[]>([]);
+    const maxItems = 30;
 
+    // адаптив карусели
+    useEffect(() => {
+        const updateItemsPerSlide = () => {
+            const width = window.innerWidth;
+
+            if (width < 600) {
+                setItemsPerSlide(1);
+            } else if (width < 1024) {
+                setItemsPerSlide(2);
+            } else {
+                setItemsPerSlide(3);
+            }
+        };
+
+        updateItemsPerSlide(); 
+
+        window.addEventListener('resize', updateItemsPerSlide);
+
+        return () => {
+            window.removeEventListener('resize', updateItemsPerSlide);
+        };
+    }, []);
+
+    // загрузка объявлений (на самом деле машин, чтобы отобразить больше карточек..)
     useEffect(() => {
         setLoading(true)
         axios.get<Car[]>('http://localhost:5072/api/cars')
@@ -44,20 +67,20 @@ const MainPage = () => {
 
             slides.push(
                 <div key={`slide-${i}`}>
-                <ul style={carouselStyle} className="mainPageCarsList">
-                    {slideItems.map((car) => (
-                    <li key={car.id} className="mainPageCarsList__item">
-                        <MainAutoCard
-                        carId={car.id}
-                        pathToImage={car.pathToImage}
-                        price={car.price}
-                        title={`${car.brand} ${car.model}`}
-                        location={car.locationCity}
-                        year={car.year}
-                        />
-                    </li>
-                    ))}
-                </ul>
+                    <ul style={carouselStyle} className="mainPageCarsList">
+                        {slideItems.map((car) => (
+                        <li key={car.id} className="mainPageCarsList__item">
+                            <MainAutoCard
+                            carId={car.id}
+                            pathToImage={car.pathToImage}
+                            price={car.price}
+                            title={`${car.brand} ${car.model}`}
+                            location={car.locationCity}
+                            year={car.year}
+                            />
+                        </li>
+                        ))}
+                    </ul>
                 </div>
             );
         }
@@ -79,7 +102,8 @@ const MainPage = () => {
                     components: {
                     Carousel: {
                         colorBgContainer: "#000",
-                        fontSize: 16
+                        fontSize: 16,
+
                     },
                     },
                 }}

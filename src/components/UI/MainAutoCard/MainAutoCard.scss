@@ -59,4 +59,19 @@
     @include hover {
         transform: scale(0.95);
     }
+
+}
+
+@media(width < rem(1380)) {
+    .mainCard {
+        max-width: rem(340);    
+
+        &__title {
+            font-size: 16px;
+        }
+
+        &__location {
+            font-size: 14px;
+        }
+    }
 }
