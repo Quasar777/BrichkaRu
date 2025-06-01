@@ -26,9 +26,9 @@ const MainPage = () => {
         const updateItemsPerSlide = () => {
             const width = window.innerWidth;
 
-            if (width < 600) {
+            if (width < 768) {
                 setItemsPerSlide(1);
-            } else if (width < 1024) {
+            } else if (width >= 768 && width < 1200) {
                 setItemsPerSlide(2);
             } else {
                 setItemsPerSlide(3);
