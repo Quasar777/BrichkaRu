@@ -1,11 +1,19 @@
 import './MyButton.scss'
 
-const MyButton = ({title, accented = false} : {title: string, accented?: boolean}) => {
+interface MyButtonProps {
+    title: string;
+    accented?: boolean;
+    className?: string;
+}
+
+const MyButton = ({ title, accented = false, className = '' }: MyButtonProps) => {
+    const baseClass = accented ? 'myButton myButton--accent' : 'myButton';
+
     return (
-        <button className={accented ? "myButton myButton--accent" : "myButton"}>
+        <button className={`${baseClass} ${className}`.trim()}>
             {title}
         </button>
     );
-}
+};
 
 export default MyButton;

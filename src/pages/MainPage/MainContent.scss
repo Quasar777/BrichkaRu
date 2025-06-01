@@ -22,6 +22,10 @@ main {
         transition-duration: var(--transition-duration);
     }
 
+    & * {
+        z-index: 50;
+    }
+
 }
 
 

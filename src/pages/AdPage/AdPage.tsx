@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import "./AdPage.scss"
-import MyButton from '../../components/UI/Button/MyButton';
 import { Button, Card, message, Modal } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useParams } from 'react-router-dom';
-import { carFakeData } from '../../fakeData/carData';
-import { AdInfoData } from '../../fakeData/adFakeData';
-import { userData } from '../../fakeData/userFakedata';
-import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
 import { Car } from '../../types/Car';
 import { User } from '../../types/User';
 import axios from 'axios';
-import { AdInfo } from '../../types/AdInfo';
 import { Ad } from '../../types/Ad';
 import WarningCard from '../../components/UI/WarningCard/WarningCard';
 
