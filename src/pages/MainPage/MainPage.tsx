@@ -1,9 +1,8 @@
 import React, { JSX, useEffect, useState } from 'react';
 import MainAutoCard from '../../components/UI/MainAutoCard/MainAutoCard';
 import FindAutoForm from '../../components/UI/FindAutoForm/FindAutoForm';
-import "./MainContent.scss";
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
-import { title } from 'process';
+import classes from "./MainContent.module.scss";
 import { Carousel, ConfigProvider, Slider } from 'antd';
 import { carFakeData } from '../../fakeData/carData';
 import axios from 'axios';
@@ -67,9 +66,9 @@ const MainPage = () => {
 
             slides.push(
                 <div key={`slide-${i}`}>
-                    <ul style={carouselStyle} className="mainPageCarsList">
+                    <ul style={carouselStyle} className={classes.mainPageCarsList}>
                         {slideItems.map((car) => (
-                        <li key={car.id} className="mainPageCarsList__item">
+                        <li key={car.id} className={classes.mainPageCarsList__item}>
                             <MainAutoCard
                             carId={car.id}
                             pathToImage={car.pathToImage}
@@ -108,7 +107,7 @@ const MainPage = () => {
                     },
                 }}
             >
-            <main className='main'>
+            <main className={classes.main}>
                
                 <PageTitle pageName={"Главная"} withLocation/>
 

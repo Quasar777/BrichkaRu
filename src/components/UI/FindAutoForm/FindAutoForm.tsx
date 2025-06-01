@@ -149,7 +149,8 @@ const FindAutoForm = () => {
                     optionFontSize: 16,
                     fontSize: 16,
                     optionActiveBg: "#fff",
-                    optionSelectedBg: "#F9F9F9"
+                    optionSelectedBg: "#F9F9F9",
+                    
                 },
                 InputNumber: {
                     activeBorderColor: "transparent",
@@ -166,7 +167,9 @@ const FindAutoForm = () => {
                     buttonSolidCheckedColor: "#FF8C00", 
                     buttonSolidCheckedBg: "#000", 
                     buttonSolidCheckedHoverBg: "#000", 
-                    buttonSolidCheckedActiveBg: "#000"     
+                    buttonSolidCheckedActiveBg: "#000", 
+                    
+                        
                 },
                 Button: {
                     paddingInline: 80,
@@ -179,6 +182,9 @@ const FindAutoForm = () => {
         >
         <form className='filterForm'>
             <div className="filterForm__tabs">
+                { 
+                    // проблема: цвет текста при наведении становится черным.
+                }
                 <Radio.Group
                     className='filterForm__radioGroup'
                     block
@@ -188,6 +194,9 @@ const FindAutoForm = () => {
                     defaultValue="allCars"
                     optionType="button"
                     buttonStyle="solid"
+                    style={{
+                        
+                    }}
                 />
             </div>
 

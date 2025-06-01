@@ -11,7 +11,6 @@
   
     &__tabs {
       display: flex;
-      
     }
 
     &__shortContainer {
@@ -39,7 +38,7 @@
     &__select {
       font-size: rem(16);
       min-height: rem(50);
-      height: 100%;
+      
     }
   
     &__submit {
@@ -62,24 +61,24 @@
       font-size: 16;
     }
 
-    &__radioGroup {
-      .ant-radio-button-wrapper:hover {
-        color: #FF8C00;
-        border-color: none;
+    @include mobile {
+      &__fields {
+        display: flex;
+        flex-direction: column;
       }
 
-      /* Оранжевая рамка активной кнопки */
-      .ant-radio-button-wrapper-checked {
-        color: #FF8C00 !important;
-        border: none !important;
-        outline: none;
+      &__shortContainer {
+        column-gap: rem(10)
       }
 
-      /* Оранжевая рамка при фокусе (tab-клавиша и клик) */
-      .ant-radio-button-wrapper:focus-within {
-        border-color: #FF8C00;
-        outline: none;
-        
+      &__tabs { 
+        justify-content: center;
+
+      }
+
+      &__submitButton {
+        width: 100%;
+        height: rem(50);
       }
     }
   }
