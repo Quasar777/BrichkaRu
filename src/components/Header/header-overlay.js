@@ -42,7 +42,6 @@ class HeaderOverlay {
     onBurgerButtonClick = () => {
         this.burgerButtonElement.classList.toggle(this.stateClasses.isActive)
         this.overlayElement.classList.toggle(this.stateClasses.isActive)
-        document.documentElement.classList.toggle(this.stateClasses.isLock)
     }
 
     // Метод для привязки различных событий к DOM-элементам

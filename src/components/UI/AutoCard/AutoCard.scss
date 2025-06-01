@@ -78,13 +78,114 @@
         text-align: left;
         font-weight: 600;
         font-size: rem(32);
+        white-space: nowrap;
     }
 
     &__like {
         position: absolute;
         right: rem(25);
         top: rem(25);
+
+        
     }
 
+    @include mobile {
+        flex-direction: column;
+    }
 
+}
+
+@media (width < rem(1200)) {
+    .autoCard {
+        &__body {
+            padding-left: rem(20);
+            padding-right: rem(30);
+            padding-block: rem(20);
+        }
+
+        &__price {
+            font-size: rem(20);
+        }
+
+        &__like {
+            @include hide
+        }
+
+        &__title {
+            font-size: rem(20);
+        }
+
+        &__carInfo-list {
+            display: flex;
+            flex-direction: column;
+            row-gap: rem(15);
+        }
+
+        &__carInfo-item {
+            font-size: rem(14);
+            gap: rem(15);
+            width: rem(180);
+            font-weight: 400;
+        }
+    }   
+}
+
+
+@media (width < rem(768)) {
+    .autoCard {
+        &__like {
+            @include show();
+
+            right: rem(15);
+            top: rem(15);
+
+            svg * {
+                fill: white;
+                stroke: white;
+                opacity: 0.5;
+            }
+        }
+
+        &__body {
+            flex-direction: column;
+            row-gap: rem(20);
+        }
+
+        &__image {
+            width: 100%;
+        }
+
+        &__carInfo-item {            
+            width: 100%;
+
+        }
+
+         &__author-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: end;
+        }
+
+        &__author-containter {
+            width: 100%;
+        
+        }
+
+        &__author {
+            font-weight: 500;
+        }
+
+        &__location {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: rem(5);
+            margin-left: 0;
+
+            &-pin {
+                opacity: 0.7;
+            }
+        }
+    }
 }

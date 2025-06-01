@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import FindAutoForm from '../../components/UI/FindAutoForm/FindAutoForm';
 import AutoCard from '../../components/UI/AutoCard/AutoCard';
-import "./Autos.scss";
 import PageTitle from '../../components/UI/PageTitle/PageTitle';
 import { useLocation } from 'react-router-dom';
 import { DataToSearchProps } from '../../types/DataToSearchProps';
 import { carFakeData } from '../../fakeData/carData';
 import ErrorCard from '../../components/UI/ErrorCard/ErrorCard';
 import { Pagination } from 'antd';
+import classes from "./Autos.module.scss";
 
 const Autos = () => {
     let [filteredAutoIDs, setFilteredAutoIDs] = useState<number[]>([])
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-
     const currentPageIDs = filteredAutoIDs.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
@@ -111,17 +110,17 @@ const Autos = () => {
     }, [useLocation().search]);
 
     return (
-        <main className='main'>
-            <PageTitle pageName={"Автомобили"}/>
+        <main className={classes.main}>
+            <PageTitle withLocation pageName={"Автомобили"}/>
 
             <FindAutoForm />
         
-            <p className='adFound__title'>Нашлось объявлений: {filteredAutoIDs.length}</p>
+            <p className={classes.adFound__title}>Нашлось объявлений: {filteredAutoIDs.length}</p>
 
-            <ul className="autosList">
+            <ul className={classes.autosList}>
                 { 
                     currentPageIDs.map((carId) => (
-                        <li key={carId} className='autosList__item'>
+                        <li key={carId} className={classes.autolist__item}>
                         <AutoCard carId={carId} />
                         </li>
                     ))

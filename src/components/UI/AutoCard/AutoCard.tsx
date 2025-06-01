@@ -55,12 +55,9 @@ const AutoCard = ({carId}: {carId : number}) => {
                 </div>
 
                 <div className="autoCard__like">
-                    <img 
-                        src="/heart.svg" 
-                        alt="добавить в избранное" 
-                        width={56}
-                        height={56}    
-                    />
+                    <svg className='likeIcon' width="50px" height="50px" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M44.887 14.5538C48.4958 18.1626 48.6341 23.9697 45.2009 27.7459L27.9988 46.6669L10.7989 27.7459C7.36584 23.9697 7.50412 18.1625 11.1129 14.5536C15.1424 10.5242 21.7787 10.8924 25.3386 15.3422L28 18.6678L30.6591 15.3418C34.219 10.892 40.8576 10.5243 44.887 14.5538Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
                 
             </div>

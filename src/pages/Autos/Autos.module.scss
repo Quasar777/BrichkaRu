@@ -1,0 +1,31 @@
+@use '../../styles/helpers/' as *;
+
+.autosList {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(50);
+    list-style: none;
+
+    @include mobile {
+        row-gap: rem(25);
+    }
+}
+
+.adFound {
+    &__title {
+        font-size: rem(32);
+        font-weight: 600;
+
+        @include mobile {
+            font-size: rem(24);
+        }
+    }
+}
+
+@include mobile {
+    .main {
+        padding-inline: rem(25);
+        padding-block: rem(20);
+        row-gap: rem(25);
+    }
+}
