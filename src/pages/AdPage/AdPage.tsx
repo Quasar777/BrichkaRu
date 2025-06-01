@@ -98,7 +98,12 @@ const AdPage = () => {
                 setAuthorData(res.data.user);
             }
             catch (e) {
-                console.log("ошибка при загрузке данных объявления. ")
+                if (e instanceof Error) {
+                    console.log("ошибка при загрузке данных объявления: ", e.message);
+                }
+                else {
+                    console.log("неизвестная ошибка при загрузке данных объявления: ", e);
+                }
             }
             finally {
                 setLoading(false);
